@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Maestro</title>
+    <link ref='preload' href="./Style.css" as="style">
+    <link rel="stylesheet" href="./Style.css">
+    <script src="Script.js"></script>
+</head>
+
+
+
+<body>
+    <div class=background-image-Maestr></div>
+    <header class="menu-header">
+        <div class="header-content">
+            <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo">
+            <h1>Portal Académico INAM (PA-INAM)</h1>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <button class="back-button" onclick="goBack()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+        <ul>
+            <li class="navbar-item">
+                <img src="/images/Maes.01.4.png" alt="Icono" class="icon">
+                <span class="navbar-link" aria-disabled="true">Maestros</span>
+            </li>
+        </ul>
+        <div class="container-busqueda">
+            <input type="busqueda" placeholder="Buscar...">
+            <button img src="./images/search.png" alt="icono" class="icon-busqueda"></button>
+        </div>
+    </nav>
+
+
+
+    <section class="sectionForm">
+        <div class="container">
+            <div class="title">Registro de Maestros</div>
+            <form id="form-validation" novalidate>
+                <div class="form-group">
+                    <span> N* de Cedula</span>
+                    <input type="Numero de cedula" placeholder="Ingrese su Numero de Cedula" required>
+                    <small>Por favor ingrese su Numero de Cedula</small>
+                </div>
+                <div class="form-group">
+                    <span>Nombres</span>
+                    <input type="Nombres" placeholder="Ingrese sus Nombres" required>
+                    <small>Por favor ingrese sus nombres</small>
+                </div>
+                <div class="form-group">
+                    <span>N* de Telefono</span>
+                    <input type="Numero de Telefono" placeholder="Ingrese su Numero de Telefono" required>
+                    <small>Por favor ingrese su Numero de Telefono</small>
+                </div>
+                <div class="form-group">
+                    <span>Dirección</span>
+                    <input type="Direccion" placeholder="Ingrese su Dirrecion exacta" required>
+                    <small>Por favor Ingrese su Direccion exacta</small>
+                </div>
+                <div class="form-group">
+                    <span>Correo Electronico</span>
+                    <input type="email" placeholder="Ingrese su Email" required>
+                    <small>Por favor ingrese su email</small>
+                </div>
+
+                <li class="navbar-item">
+                    <div class="form-group">
+                        <label class="control-label">Area</label>
+                        <select class="form-control">
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option>Matematica</option>
+                            <option>Lengua y Literatura</option>
+                            <option>Ciencia Sociales</option>
+                            <option>Fisica</option>
+                            <option>Biologia</option>
+                            <option>Ciencia Naturales</option>
+                            <option>Educacion Fisica</option>
+                            <option>Lengua Extranjera</option>
+                            <option>TI</option>
+                        </select>
+                    </div>
+                </li>
+                <div class="button-Maestr">
+                    <input type="submit" value="Registrarse">
+                </div>
+                <div class="button-edit-Maestr">
+                    <input type="submit" value="Editar">
+                </div>
+            </form>
+        </div>
+
+        <script>
+            const addForm = document.getElementById
+                ("form-validation");
+            addForm.addEventListener("submit", (e) => {
+                if (addForm.checkValidity() === false) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    addForm.classList.add('was-validated');
+                    return false;
+                }
+            })
+        </script>
+
+    </section>
+
+    <footer class="inam-footer">
+        <p>INAM-Masatepe</p>
+    </footer>
+
+    <script src="Script.js"></script>
+</body>
+
+</html>

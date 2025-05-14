@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Tutor</title>
+    <link ref='preload' href="./Style.css" as="style">
+    <link rel="stylesheet" href="./Style.css">
+    <script src="Script.js"></script>
+</head>
+
+
+
+<body>
+    <div class=background-image-Tutor></div>
+    <header class="menu-header">
+        <div class="header-content">
+            <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo">
+            <h1>Portal Académico INAM (PA-INAM)</h1>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <button class="back-button" onclick="goBack()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+        <ul>
+            <li class="navbar-item">
+                <img src="/images/Tutor.01.3.png" alt="Icono" class="icon">
+                <span class="navbar-link" aria-disabled="true">Tutor</span>
+            </li>
+        </ul>
+    </nav>
+
+
+    <section class="sectionForm">
+        <div class="container">
+            <div class="title">Registro de Tutor</div>
+            <form id="form-validation" novalidate>
+                <div class="form-group">
+                    <span> Numero Cedula</span>
+                    <input type="Codigo" placeholder="Ingrese su Numero de Cedula" required>
+                    <small>Por favor ingrese su Numero de cedula </small>
+                </div>
+                <div class="form-group">
+                    <span>Nombres</span>
+                    <input type="Nombres" placeholder="Ingrese sus Nombres" required>
+                    <small>Por favor ingrese sus nombres</small>
+                </div>
+                <div class="form-group">
+                    <span>Apellidos</span>
+                    <input type="Apellidos" placeholder="Ingrese sus Apellidos" required>
+                    <small>Por favor ingrese sus apellidos</small>
+                </div>
+                <div class="form-group">
+                    <span>Fecha de Nacimiento</span>
+                    <input type="Fecha de Nacimiento" placeholder="Ingrese su Fecha de Nacimiento" required>
+                    <small>Por favor ingrese su fecha de nacimiento</small>
+                </div>
+                <div class="form-group">
+                    <span>Telefono</span>
+                    <input type="Telefono" placeholder="Ingrese su Numero de Telefono" required>
+                    <small>Por favor Ingrese su Codigo</small>
+                </div>
+                <div class="form-group">
+                    <span>Correo Electronico</span>
+                    <input type="email" placeholder="Ingrese su Email" required>
+                    <small>Por favor ingrese su email</small>
+                </div>
+                <div class="form-group">
+                    <span>Dirección</span>
+                    <input type="text" placeholder="Ingrese su Dirección" required>
+                    <small>Por favor ingrese su Dirección</small>
+                </div>
+                <div class="button-Tutor">
+                    <input type="submit" value="Registrarse">
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+    <footer class="inam-footer">
+        <p>INAM-Masatepe</p>
+    </footer>
+
+    <script src="Script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,825 @@
+/* Estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', Bold;
+}
+
+body {
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+}
+
+/* Imagen de fondo */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(./images/Img.1.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+/* Imagen de fondo Matricula*/
+.background-image-Matricula {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(./images/Img.2.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+/*Imagen de fondo Tutor*/
+.background-image-Tutor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(./images/img.4.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+/*Imagen de fondo Maestros*/
+.background-image-Maestr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 95%;
+    height: 95%;
+    background-image: url(./images/Img.3.jpg);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+
+
+/* Cabecera con logo */
+.menu-header {
+    padding: 1rem;
+    background: #5D3CA6;
+    color: white;
+
+
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.site-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.menu-link {
+    color: #34495e;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.menu-header h1 {
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
+    line-height: 1.3;
+    margin: 0;
+    font-weight: 500;
+}
+
+.contenedor {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+/* Navegación horizontal */
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.navbar {
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+    display: flex;
+    background: #D9D9D9;
+}
+
+
+.navbar-item {
+    position: relative;
+    padding-bottom: 0px;
+    display: flex;
+    gap: 8px;
+}
+
+.navbar-link {
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.5;
+    justify-content: space-between;
+    z-index: 999;
+
+}
+
+
+.navbar-link:hover {
+    background-color: #ffffff;
+}
+
+
+.navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    top: auto;
+    transition: all 0.3s ease;
+
+}
+
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: 000000;
+    min-width: 160px;
+    z-index: 1;
+    background: #D9D9D9;
+
+}
+
+.dropdown-link {
+    padding: 15px 40px;
+    color: black;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+
+}
+
+.dropdown-link:hover {
+    background-color: #5D3CA6;
+}
+
+.navbar-item:hover>.dropdown {
+    display: block;
+}
+
+.navbar-list,
+.dropdown {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Estilo de la flecha del dropdown */
+.dropdown-arrow {
+    width: 0.7em;
+    height: 0.7em;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Gira la flecha al hacer hover */
+.navbar-item:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Footer institucional */
+.inam-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #5D3CA6;
+    color: white;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #000;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/*Registro de estudiante*/
+small {
+    display: none;
+}
+
+.container-busqueda {
+    position: sticky;
+    top: 0%;
+    float: left;
+}
+
+input {
+    width: 250px;
+    padding: 10px 10px;
+    border-radius: 15px;
+    border: 5px s#000000;
+    outline: none;
+    font-size: 1rem;
+}
+
+button .icon-busqueda {
+    background-color: #D9D9D9;
+    position: sticky;
+    bottom: 0%;
+    left: 0%;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    list-style: none;
+
+}
+
+/*caja del registro estudiante*/
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 25px 30px;
+    border-radius: 0px;
+    height: 50%;
+    background-position: center;
+    background-color: #fff;
+}
+
+.container .title {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+
+.container form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px 12px 0;
+
+}
+
+.form-group small {
+    display: none;
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 4px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: calc(100%/2 - 20px);
+}
+
+form span {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 5px solid #5D3CA6;
+    padding-left: 10px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #5D3CA6;
+    outline: none;
+}
+
+.button-Res {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Res input {
+    width: 140%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #28a745);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Res input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+.button-Edit {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Edit input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #5D3CA6);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Edit input:hover {
+    background: linear-gradient(130deg, #28a745);
+}
+
+.button-Elim {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Elim input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #dc3545);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Elim input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+
+.was-validated input:invalid {
+    border-color: #dc3545 !important;
+}
+
+.form-group input.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.form-group input.is-valid {
+    border-color: #28a745 !important;
+}
+
+/* Mantener morado solo cuando no hay errores */
+.form-group input:focus:not(.is-invalid) {
+    border-color: #5D3CA6 !important;
+}
+
+.was-validated input:invalid~small {
+    display: block;
+}
+
+.was-validated small {
+    display: block;
+    color: red;
+}
+
+.form-group input {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media(max-width: 584px) {
+    .container {
+        max-width: 100%;
+    }
+
+    form .form-group {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .container form {
+        max-height: 400px;
+        overflow-y: scroll;
+    }
+
+    .container form::-webkit-scrollbar {
+        width: 0;
+    }
+
+    form .button {
+        margin: 20px;
+    }
+}
+
+/*boton hamburguesa */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .navbar-container {
+        justify-content: flex-start;
+        padding: 15px;
+    }
+
+    .navbar-list {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #D9D9D9;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .navbar-list.active {
+        display: flex;
+    }
+
+    .navbar-item {
+        width: 100%;
+    }
+
+    .dropdown {
+        position: static;
+        background: #444;
+        margin-left: 1rem;
+    }
+
+    .dropdown-link {
+        padding: 10px 20px;
+    }
+
+    .menu-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .navbar-list {
+        flex-direction: column;
+    }
+
+    .navbar-item {
+        width: 100%;
+    }
+
+    .dropdown {
+        position: static;
+    }
+
+    .dropdown-arrow {
+        margin-left: auto;
+        /* Alinea a la derecha en móviles */
+    }
+
+    .navbar-item.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
+
+}
+
+/* Estilos para pantallas pequeñas */
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+
+/* Estilos para registro Estudiante */
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    background-color: white;
+    border: 1px white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: white;
+
+}
+
+.icon {
+    width: 25px;
+    object-fit: contain;
+}
+
+.navbar-item .icon {
+    width: 32px;
+
+    margin-right: 4px;
+    /* Espacio personalizado entre icono y texto */
+    vertical-align: middle;
+}
+
+.navbar ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.sectionForm {
+    margin-top: 30px;
+    border: 2px solid #5D3CA6;
+    border-radius: 15px;
+    padding: 40px;
+    width: fit-content;
+    margin: auto;
+
+}
+
+
+.form-section {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 20px;
+    margin: auto;
+    border: #5D3CA6 solid 2px;
+    width: fit-content;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.button-Res-Matr {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Res-Matr input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #28a745);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Res-Matr input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+.button-Edit-Matr {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Edit-Matr input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #5D3CA6);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Edit-Matr input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+.button-Elim-Matr {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Elim-Matr input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #dc3545);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Elim-Matr input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+
+.form-group select {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 5px solid #5D3CA6;
+    padding-left: 10px;
+    border-bottom-width: 2px;
+    /* Estilos adicionales para select */
+    background-color: white;
+    cursor: pointer;
+}
+
+.form-section1 input {
+    height: 40px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 5px solid #5D3CA6;
+    padding-left: 10px;
+    border-bottom-width: 2px;
+    /* Estilos adicionales para Adjuntar archivos */
+    background-color: white;
+    cursor: pointer;
+
+}
+
+.button-Tutor {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Tutor input {
+    width: 140%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #28a745);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Tutor input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+.button-Maestr {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Maestr input {
+    width: 140%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #28a745);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Maestr input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+.button-edit-Maestr {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-edit-Maestr input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #5D3CA6);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-edit-Maestr input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+.button-Maestr {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Maestr input {
+    width: 140%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #28a745);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Maestr input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
+
+.button-Asig {
+    width: 20%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+.button-Asig input {
+    width: 140%;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(130deg, #28a745);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-Asig input:hover {
+    background: linear-gradient(130deg, #09f03f);
+}
