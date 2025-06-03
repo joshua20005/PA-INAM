@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu principal</title>
+    <link rel="stylesheet" href="StyleVista.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+
+    <div class="background-image"></div>
+    <section  class="menu-header">
+      <div class="header-content">
+        <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo" />
+        <h1>Portal Académico INAM (PA-INAM)</h1>
+      </div>
+      <div class="search">
+        <input type="search" placeholder="¿Que deseas buscar?" />
+      </div>
+     </section>
+     
+    <div class="container-prueba"></div>
+
+    <div class="menu">
+      <div class="header-content">
+        <input type="checkbox" id="check__menu" />
+        <label id="#label__check" for="check__menu">
+          <i class="fa fa-reorder icon__menu"></i>
+        </label>
+      </section>
+
+        <nav>
+          <ul>
+            <li><a href="#">Institución</a></li>
+            <li>
+              <a href="#">Autoridades</a>
+              <ul>
+                <li><a href="#">Director</a></li>
+                <li><a href="#">Sub-Director</a></li>
+                <li><a href="#">Secretaria</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Identidad</a></li>
+            <li><a href="#">Misión y Visión</a></li>
+            <li><a href="#">Trámites Académicos</a></li>
+          </ul>
+        </nav>
+        <!--login button-->
+      <div class="nav--actions">
+      <div class="nav--login">
+        <img id="login-btn" src="./images/user-line.svg" alt="login" loading="lazy" />
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <main class="contenido__principal"></main>
+    <div class="carrusel">
+        <!--imagenes de carrusel-->
+      <div class="atras">
+        <img id="atras" src="./images/atras.svg" alt="atras" loading="lazy" />
+      </div>
+      <div class="imagenes">
+        <div id="img">
+          <img
+            class="img"
+            src="./images/Img.7.jpg"
+            alt="Imagen 1"
+            loading="lazy"
+          />
+        </div>
+        <div id="texto" class="texto">
+          <h3>Bienvenido al Portal Académico INAM</h3>
+          <p>
+            Aquí encontrarás toda la información académica y 
+            administrativa que se generan dentro del marco educativo
+            del Instituto Nacional de Masatepe, brindando al centro educativo 
+            un servicio automatizado, integrando las tareas principales que se llevan acabo en la institucion
+          </p>
+        </div>
+      </div>
+
+      <div class="adelante">
+        <img
+          id="adelante"
+          src="./images/adelante.svg"
+          alt="adelante"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="puntos" id="puntos"></div>
+    <script src="./Img.carrusel.js"></script>
+
+    <footer class="inam-footer">
+      <p>INAM-Masatepe</p>
+    </footer>
+
+    </main>
+  </body>
+</html>
