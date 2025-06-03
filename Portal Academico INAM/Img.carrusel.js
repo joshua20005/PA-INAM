@@ -1,18 +1,18 @@
 let imagenes = [
     {
-        src: "./images/Img.1.jpg",
+        src: "./images/Img.7.jpg",
         alt: "Imagen 1",
         nombre: "Bienvenido al Portal Académico INAM",
         description: "Aquí encontrarás toda la información académica y administrativa relacionada con el Instituto Nacional de Masatepe."
     },
     {
-        src: "./images/Img.2.jpg",
+        src: "./images/Img.8.jpg",
         alt: "Imagen 2",
         nombre: "Sección de Información Académica",
         description: "Aquí encontrarás toda la información académica y administrativa relacionada con el Instituto Nacional de Masatepe."
     },
     {
-        src: "./images/Img.3.jpg",
+        src: "./images/Img.11.jpg",
         alt: "Imagen 3",
         nombre: "Información Administrativa",
         description: "Aquí encontrarás toda la información académica y administrativa relacionada con el Instituto Nacional de Masatepe."
