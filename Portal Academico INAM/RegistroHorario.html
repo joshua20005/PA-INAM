@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Horarios</title>
+    <link rel="stylesheet" href="StyleHorario.css">
+    <script src="ScriptHorario.js"></script>
+</head>
+
+<body>
+    <div class="background"></div>
+
+    <nav class="nav">
+        <div class="nav__container">
+            <button class="nav__button" onclick="goBack()">
+                <svg xmlns="Portal Academico INAM\assets\icons\Flecha.png" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+        <div class="nav__item">
+            <span class="nav__title" aria-disabled="true">Horario</span>
+        </div>
+    </nav>
+    <div class="layout__conteiner">
+        <div class="layout">
+            <div class="layout__image">
+                <img src="./images/Horar.03.3.png" alt="Imagen">
+            </div>
+
+            <section class="layout__section">
+                <div class="section">
+                    <div class="section__title">Detalles de Horario</div>
+                    <form class="form" id="form-validation" novalidate>
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label class="form__label" for="docente">Docente</label>
+                                <select class="form__control" id="docente" name="docente" placeholder="Selecione una opcion" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>----------</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="anio" >Año Académico</label>
+                                <select class="form__control" id="anio" name="anio" placeholder="Selecione una opcion" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>Primer Año</option>
+                                    <option>Segundo Año</option>
+                                    <option>Tercer Año</option>
+                                    <option>Cuarto Año</option>
+                                    <option>Quinto Año</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="asignatura">Asignatura</label>
+                                <select class="form__control" id="asignatura" name="asignatura" placeholder="Selecione una opcion" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>Lengua y Literatura</option>
+                                    <option>Lengua Extranjer(Ingles)</option>
+                                    <option>Talleres de Arte y Cultura</option>
+                                    <option>Creciendo en Valores</option>
+                                    <option>Educación Física Y Práctica Deportiva</option>
+                                    <option>Educación para Aprender, Emprender, Prosperar</option>
+                                    <option>Ciencias Sociales(Geografía)</option>
+                                    <option>Ciencias Sociales(Geografía/Historia)</option>
+                                    <option>Ciencias Sociales(Geografía/Economía)</option>
+                                    <option>Ciencias Sociales(Geografía/Filosofía)</option>
+                                    <option>Ciencia Naturales</option>
+                                    <option>Química</option>
+                                    <option>Física</option>
+                                    <option>Biología</option>
+                                    <option>Matemática</option>
+                                    <option>TI</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="hora">Hora</label>
+                                <select class="form__control" id="hora" name="hora" placeholder="Selecione una opcion" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>07:00 - 07:45</option>
+                                    <option>07:45 - 08:30</option>
+                                    <option>08:30 - 09:15</option>
+                                    <option>09:15 - 10:00</option>
+                                    <option>10:20 - 11:05</option>
+                                    <option>11:05 - 11:45</option>
+                                    <option>12:30 - 01:15</option>
+                                    <option>01:15 - 02:00</option>
+                                    <option>02:00 - 02:45</option>
+                                    <option>02:45 - 03:30</option>
+                                    <option>03:30 - 04:45</option>
+                                    <option>04:45 - 05:30</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form__button">
+                            <button type="submit" class="form__button--green" onclick="guardarhorario(event)">
+                                Guardar
+                            </button>
+                            <button type="submit" class="form__button--purple"onclick="editarhorario(event)">
+                                Editar
+                            </button>
+                            <button type="submit" class="form__button--red" onclick="eliminarhorario(event)">
+                                Eliminar    
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div> 
+    </div>  
+</body>
+</html>
