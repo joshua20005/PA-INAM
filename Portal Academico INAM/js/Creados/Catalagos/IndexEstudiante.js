@@ -76,6 +76,7 @@
 
 
 document.addEventListener('DOMContentLoaded', function () {
+    // 1. Seleccionar el tbody de la tabla
     const tbody = document.querySelector('#tablaStudent tbody');
 
     // 2. Verificar si existe el elemento
@@ -83,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('No se encontró el elemento tbody');
         return;
     }
-
+    // poner la URL de la API
     fetch('http://127.0.0.1:8000/apiRegistration/Registration/DetalleRegistro/')
         .then(response => {
             if (!response.ok) throw new Error('Error en la respuesta');
@@ -94,14 +95,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Llenar tabla con los datos
             data.forEach(item => {
+                // Hacer referencia a la fila del tbody
                 const fila = tbody.insertRow();
 
                 // Añadir celdas según la estructura de tu JSON
                 fila.insertCell(0).textContent = item.code_registration;
                 fila.insertCell(1).textContent = item.code_student;
-                fila.insertCell(2).textContent = item.name_student;
-                fila.insertCell(3).textContent = item.surname_student;
-                fila.insertCell(4).textContent = item.birthday_student;
+                fila.insertCell(2).textContent = item.name_student + " " + item.surname_student;
+                //fila.insertCell(3).textContent = item.surname_student;
+                fila.insertCell(3).textContent = item.birthday_student;
+                fila.insertCell(4).textContent = item.phone_student;
                 fila.insertCell(5).textContent = item.email_student;
                 fila.insertCell(6).textContent = item.level_group;
                 fila.insertCell(7).textContent = item.section_group;
