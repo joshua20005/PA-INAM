@@ -39,52 +39,52 @@
       </li>
     </ul>
     <div class="container-busqueda">
-      <input type="busqueda" placeholder="Buscar...">
-      <button img src="./images/search.png" alt="icono" class="icon-busqueda"></button>
+      <input id="search_code" type="text" placeholder="Buscar...">
+      <button class="icon-busqueda" id="search-btn" title="Buscar"></button>
     </div>
   </nav>
 
 
 
-  <section class="sectionForm">
+  <section id="Section-F" class="sectionForm">
     <div class="container">
       <div class="title">Registro de Estudiante</div>
       <form id="form-validation" novalidate>
         <div class="form-group">
           <span> Codigo</span>
-          <input type="Codigo" placeholder="Ingrese su Codigo" required>
+          <input id="code_student" type="Codigo" placeholder="Ingrese su Codigo" required>
           <small>Por favor ingrese su Codigo</small>
         </div>
         <div class="form-group">
           <span>Nombres</span>
-          <input type="Nombres" placeholder="Ingrese sus Nombres" required>
+          <input id="name_student" type="Nombres" placeholder="Ingrese sus Nombres" required>
           <small>Por favor ingrese sus nombres</small>
         </div>
         <div class="form-group">
           <span>Apellidos</span>
-          <input type="Apellidos" placeholder="Ingrese sus Apellidos" required>
+          <input id="surname_student" type="Apellidos" placeholder="Ingrese sus Apellidos" required>
           <small>Por favor ingrese sus apellidos</small>
         </div>
         <div class="form-group">
           <span>Fecha de Nacimiento</span>
-          <input type="date" id="Fecha de Nacimiento" placeholder="Ingrese su Fecha de Nacimiento" required>
+          <input type="date" id="birthday_student" placeholder="Ingrese su Fecha de Nacimiento" required>
           <small>Por favor ingrese su fecha de nacimiento</small>
         </div>
         <div class="form-group">
           <span>Telefono</span>
-          <input type="Telefono" placeholder="Ingrese su Numero de Telefono" required>
+          <input id="phone_student" type="Telefono" placeholder="Ingrese su Numero de Telefono" required>
           <small>Numero de Telefono</small>
         </div>
         <div class="form-group">
           <span>Correo Electronico</span>
-          <input type="email" placeholder="Ingrese su Email" required>
+          <input id="email_student" type="email" placeholder="Ingrese su Email" required>
           <small>Por favor ingrese su email</small>
         </div>
         <div class="button-Res">
-          <input type="submit" value="Registrarse">
+          <input id="register-btn" type="submit" value="Registrarse">
         </div>
         <div class="button-Edit">
-          <input type="submit" value="Editar">
+          <input id="edit-btn" type="submit" value="Editar">
         </div>
         <div class="button-Elim">
           <input type="submit" value="Eliminar">
@@ -112,6 +112,7 @@
   </footer>
 
   <script src="Script.js"></script>
+  <script src="./js/Creados/Catalagos/IndexEstudiante.js"></script>
 </body>
 
 </html>
