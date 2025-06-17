@@ -7,23 +7,27 @@ function goBack() {
     }
 }
 
-function guardarasignatura(event){
-    const codasignatura = document.getElementById("codasignatura").value;
+function guardarestudiante(event){
+    const codestudiante = document.getElementById("codestudiante").value;
     const nombre = document.getElementById("nombre").value;
-    const anio = document.getElementById("anio").value;
-    const periodo = document.getElementById("periodo").value;
+    const apellido = document.getElementById("apellido").value;
+    const fecha = document.getElementById("fecha").value;
+    const telefono = document.getElementById("telefono").value;
+    const email = document.getElementById("email").value;
 
-    if(!codasignatura ||!nombre ||!anio ||!periodo ){
+    if(!codestudiante ||!nombre ||!apellido ||!fecha ||!telefono ||!email ){
         alert("Completa todos los Campos");
         return;
     }
 
-    console.log("Cód.Asignatura", codasignatura);
+    console.log("Cód.Estudiante", codestudiante);
     console.log("Nombre", nombre);
-    console.log("Año Academico", anio);
-    console.log("Periodo", periodo);
+    console.log("Apellidos", apellido);
+    console.log("Fecha de Nacimiento", fecha);
+    console.log("N.Teléfono", telefono);
+    console.log("Correo Electrónico", email);
 
-    alert("Asignatura Guardada Correctamente");
+    alert("Registro de Estudiante Guardado Correctamente");
 
 }
 

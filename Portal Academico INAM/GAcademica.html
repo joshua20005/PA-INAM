@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros</title>
+    <link rel="stylesheet" href="./StyleGAcademica.css">
+    <script src="./ScriptGAcademica.js"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__content">
+            <h1 class="header__content">PA-INAM</h1>
+        </div>
+    </header>
+
+    <div class="separador"></div>
+    
+    <!-- imagen de fondo -->
+    <div class="background-Image"></div>
+
+    <!-- nav  -->
+    <nav class="nav">
+        <button class="nav__button" onclick="goBack()">
+            <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+        </button>
+            <span class="nav__title" aria-disabled="true">Gestión Académica</span>
+            
+        <!--Foto de perfil del usuario que inicio sesion en el sistema-->
+		<div class="nav__profile">
+			<img src="./images/usuario.png" class="nav__profile-img">
+			<ul class="nav__profile-link">
+                <li><a href="#"><img src="./images/help.png" class="nav__profile-img" >Ayuda</a></li>
+				<li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
+			</ul>
+	    </div>   
+    </nav>
+
+    <!-- contenedor  -->
+    <div class="container">
+        <!-- Inicio de Sección  -->
+        <section class="section">
+            <!-- items de las otras vistas  -->
+            <div class="section__items">
+                <a href="RegistroAsistencia.html" class="section__item">
+                    <img src="./images/Asistencia.png" class="section__item-icon" alt="Img.asistencia">
+                    Asistencia
+                </a>
+                <a href="RegistroNotas.html" class="section__item">
+                    <img src="./images/Notas.png" class="section__item-icon" alt="Img.nota">
+                    Nota
+                </a>
+                <a href="RegistroHorario.html" class="section__item">
+                    <img src="./images/Horario.png" class="section__item-icon" alt="Img.horario">
+                    Horario
+                </a>
+                <a href="RegistroMatricula.html" class="section__item">
+                    <img src="./images/Matricula.png" class="section__item-icon" alt="Img.matricula">
+                    Matricula
+                </a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

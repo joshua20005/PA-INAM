@@ -4,95 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./Style.css">
-    <script src="Script.js"></script>
+    <title>Registro de Grupo</title>
+    <link rel="stylesheet" href="./StyleGrupo.css">
+    <script src="ScriptGrupo.js"></script>
 </head>
 
 <body>
-    <header class="menu-header">
-        <div class="header-content">
-            <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo">
-            <h1>Portal Académico INAM (PA-INAM)</h1>
-        </div>
-    </header>
-
-    <nav class="navbar">
-        <div class="navbar-container">
-            <button class="back-button" onclick="goBack()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+    <div class="background"></div>
+    
+    <nav class="nav">
+        <div class="nav__container">
+            <button class="nav__button" onclick="goBack()">
+                <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
                         clip-rule="evenodd" />
                 </svg>
-            </button>
+             </button>
         </div>
-        <ul>
-            <li class="navbar-item">
-                <img src="/images/Grup.01.5.png" alt="Icono" class="icon">
-                <span class="navbar-link" aria-disabled="true">Grupo</span>
-            </li>
-        </ul>
+        <div class="nav__item">
+            <span class="nav__title" aria-disabled="true">Grupo de Clases</span>
+        </div>
+        <!--Foto de perfil del usuario que inicio sesion en el sistema-->
+		<div class="nav__profile">
+			<img src="./images/usuario.png" class="nav__profile-img">
+			<ul class="nav__profile-link">
+                <li><a href="#"><img src="./images/help.png" class="nav__profile-img" >Ayuda</a></li>
+				<li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
+			</ul>
+	    </div>     
     </nav>
+    <div class="separador"></div>
+    <div class="layout__conteiner">
+        <div class="layout">
+            <div class="layout__image">
+                <img src="./images/Grupo.png" alt="imagen">
+            </div>
 
-    <section class="sectionForm">
-        <div class="navbar-container">
-            <nav class="navbar">
-                <ul class="navbar-list">
-                    <li class="navbar-item">
-                        <a class="navbar-link" href="#"> Registro
-                            <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 58">
-                                <path fill="currentColor"
-                                    d="M56.4 36.2c-2-2.1-23.5-22.5-23.5-22.5-1.1-1.1-2.5-1.7-3.9-1.7s-2.9.6-3.9 1.7S3.6 34.1 1.6 36.2c-2 2.1-2.2 5.8 0 8.1 2.2 2.2 5.2 2.4 7.9 0l19.5-18.7L48.5 44.3c2.7 2.4 5.7 2.2 7.9 0 2.2-2.3 2-6-1.1-8.1z" />
-                            </svg></a>
-                        <ul class="dropdown">
-                            <li><a class="dropdown-link" href="./RegistroEstudiante.html">Estudiante</a></li>
-                            <li><a class="dropdown-link" href="./RegistroTutor.html">Tutor</a></li>
-                            <li><a class="dropdown-link" href="#">Maestro</a></li>
-                            <li><a class="dropdown-link" href="./RegistroGrupo.html">Grupo</a></li>
-                            <li><a class="dropdown-link" href="#">Asignatura</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="navbar-item">
-                        <a class="navbar-link" href="#"> Gestión Academica
-                            <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 58">
-                                <path fill="currentColor"
-                                    d="M56.4 36.2c-2-2.1-23.5-22.5-23.5-22.5-1.1-1.1-2.5-1.7-3.9-1.7s-2.9.6-3.9 1.7S3.6 34.1 1.6 36.2c-2 2.1-2.2 5.8 0 8.1 2.2 2.2 5.2 2.4 7.9 0l19.5-18.7L48.5 44.3c2.7 2.4 5.7 2.2 7.9 0 2.2-2.3 2-6-1.1-8.1z" />
-                            </svg></a>
-                        <ul class="dropdown">
-                            <li><a class="dropdown-link" href="#">Asistencia</a></li>
-                            <li><a class="dropdown-link" href="#">Nota</a></li>
-                            <li><a class="dropdown-link" href="#">Horario</a></li>
-                            <li><a class="dropdown-link" href="#">Matricula</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="navbar-item">
-                        <a class="navbar-link" href="#"> Registro de Actividades
-                            <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 58">
-                                <path fill="currentColor"
-                                    d="M56.4 36.2c-2-2.1-23.5-22.5-23.5-22.5-1.1-1.1-2.5-1.7-3.9-1.7s-2.9.6-3.9 1.7S3.6 34.1 1.6 36.2c-2 2.1-2.2 5.8 0 8.1 2.2 2.2 5.2 2.4 7.9 0l19.5-18.7L48.5 44.3c2.7 2.4 5.7 2.2 7.9 0 2.2-2.3 2-6-1.1-8.1z" />
-                            </svg>
-                        </a>
-                        <ul class="dropdown">
-                            <li><a class="dropdown-link" href="#">Estudiantes</a></li>
-                            <li><a class="dropdown-link" href="#">Tutor</a></li>
-                            <li><a class="dropdown-link" href="#">Maestros</a></li>
-                            <li><a class="dropdown-link" href="#">Grupos</a></li>
-                            <li><a class="dropdown-link" href="#">Asignaturas</a></li>
-                            <li><a class="dropdown-link" href="#">Asistencias</a></li>
-                            <li><a class="dropdown-link" href="#">Notas</a></li>
-                            <li><a class="dropdown-link" href="#">Horarios</a></li>
-                            <li><a class="dropdown-link" href="#">Matriculas</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <section class="layout__section">
+                <div class="section">
+                    <div class="section__title">Registro de Grupo de Clase</div>
+                    <form clas="form" id="form-validation"  novalidate>
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label class="form__label" for="codigo">Código</label>
+                                <input type="text" class="form__control" id="codigo" name="codigo" placeholder="Ingrese el codigo" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="anio" >Año Académico</label>
+                                <select class="form__control" id="anio" name="anio" placeholder="Selecione una opcion" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>Primer Año</option>
+                                    <option>Segundo Año</option>
+                                    <option>Tercer Año</option>
+                                    <option>Cuarto Año</option>
+                                    <option>Quinto Año</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="seccion" >Sección</label>
+                                <select class="form__control" id="seccion" name="seccion" placeholder="Selecione una opcion" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                    <option>D</option>
+                                    <option>E</option>
+                                    <option>F</option>
+                              </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="alumnos" >Cantidad de Alumnos</label>
+                                <select class="form__control" id="alumnos" name="alumnos" placeholder="Selecione una opcion" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>25</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>30</option>
+                                    <option>31</option>
+                                    <option>33</option>
+                                    <option>35</option>
+                                    <option>36</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                            <label class="form__label" for="turno" >Turno</label>
+                                <select class="form__control" id="turno" name="turno" placeholder="Selecione una opción" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>Matutino</option>
+                                    <option>Vespertino</option>
+                                </select>
+                            </div> 
+                        </div>
+                        <div class="form__button">
+                            <button type="submit" class="form__button--green" onclick="guardargrupo(event)">
+                                Guardar
+                            </button>
+                            <button type="submit" class="form__button--purple"onclick="editargrupo(event)">
+                                Editar
+                            </button>
+                            <button type="submit" class="form__button--red" onclick="eliminargrupo(event)">
+                                Eliminar    
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
         </div>
-        </nav>
-    </section>
-
-
+    </div>
 </body>
 
 </html>
