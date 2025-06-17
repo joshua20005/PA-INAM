@@ -5,122 +5,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Maestro</title>
-    <link ref='preload' href="./Style.css" as="style">
-    <link rel="stylesheet" href="./Style.css">
-    <script src="Script.js"></script>
+    <link rel="stylesheet" href="./StyleMaestro.css">
+    <script src="ScriptMaestro.js"></script>
 </head>
 
 
-
 <body>
-    <div class=background-image-Maestr></div>
-    <header class="menu-header">
-        <div class="header-content">
-            <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo">
-            <h1>Portal Académico INAM (PA-INAM)</h1>
-        </div>
-    </header>
+  <div class="background"></div>
 
-    <nav class="navbar">
-        <div class="navbar-container">
-            <button class="back-button" onclick="goBack()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+  <nav class="nav">
+        <div class="nav__container">
+            <button class="nav__button" onclick="goBack()">
+                <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
                         clip-rule="evenodd" />
                 </svg>
-            </button>
+             </button>
         </div>
-        <ul>
-            <li class="navbar-item">
-                <img src="/images/Maes.01.4.png" alt="Icono" class="icon">
-                <span class="navbar-link" aria-disabled="true">Maestros</span>
-            </li>
-        </ul>
-        <div class="container-busqueda">
-            <input type="busqueda" placeholder="Buscar...">
-            <button img src="./images/search.png" alt="icono" class="icon-busqueda"></button>
+        <div class="nav__item">
+            <span class="nav__title" aria-disabled="true">Maestro</span>
         </div>
+        <!--Foto de perfil del usuario que inicio sesion en el sistema-->
+		<div class="nav__profile">
+			<img src="./images/usuario.png" class="nav__profile-img">
+			<ul class="nav__profile-link">
+                <li><a href="#"><img src="./images/help.png" class="nav__profile-img" >Ayuda</a></li>
+				<li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
+			</ul>
+	    </div>     
     </nav>
+    <div class="separador"></div>
 
+  <div class="layout__conteiner">
+    <div class="layout">
+      <div class="layout__image">
+        <img src="./images/docente.png" alt="imagen">
+      </div>
+    
 
-
-    <section class="sectionForm">
-        <div class="container">
-            <div class="title">Registro de Maestros</div>
-            <form id="form-validation" novalidate>
-                <div class="form-group">
-                    <span> N* de Cedula</span>
-                    <input type="Numero de cedula" placeholder="Ingrese su Numero de Cedula" required>
-                    <small>Por favor ingrese su Numero de Cedula</small>
-                </div>
-                <div class="form-group">
-                    <span>Nombres</span>
-                    <input type="Nombres" placeholder="Ingrese sus Nombres" required>
-                    <small>Por favor ingrese sus nombres</small>
-                </div>
-                <div class="form-group">
-                    <span>N* de Telefono</span>
-                    <input type="Numero de Telefono" placeholder="Ingrese su Numero de Telefono" required>
-                    <small>Por favor ingrese su Numero de Telefono</small>
-                </div>
-                <div class="form-group">
-                    <span>Dirección</span>
-                    <input type="Direccion" placeholder="Ingrese su Dirrecion exacta" required>
-                    <small>Por favor Ingrese su Direccion exacta</small>
-                </div>
-                <div class="form-group">
-                    <span>Correo Electronico</span>
-                    <input type="email" placeholder="Ingrese su Email" required>
-                    <small>Por favor ingrese su email</small>
-                </div>
-
-                <li class="navbar-item">
-                    <div class="form-group">
-                        <label class="control-label">Area</label>
-                        <select class="form-control">
-                            <option value="" disabled selected>Seleccione una opción</option>
-                            <option>Matematica</option>
-                            <option>Lengua y Literatura</option>
-                            <option>Ciencia Sociales</option>
-                            <option>Fisica</option>
-                            <option>Biologia</option>
-                            <option>Ciencia Naturales</option>
-                            <option>Educacion Fisica</option>
-                            <option>Lengua Extranjera</option>
-                            <option>TI</option>
-                        </select>
-                    </div>
-                </li>
-                <div class="button-Maestr">
-                    <input type="submit" value="Registrarse">
-                </div>
-                <div class="button-edit-Maestr">
-                    <input type="submit" value="Editar">
-                </div>
-            </form>
+      <section class="layout__section">
+        <div class="section">
+          <div class="section__title">Registro de Maestro</div>
+          <form clas="form" id="form-validation"  novalidate>
+            <div class="form__grid">
+              <div class="form__group">
+                <label class="form__label" for="Nmaestro">N* de Cedula</label>
+                  <input type="text" class="form__control" id="Nmaestro" name="Nmaestro" placeholder="Ingrese el N.Identidad" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="nombres" >Nombres</label>
+                  <input type="text" class="form__control" id="nombres" name="Nombre del Maestro" placeholder="Ingrese Nombre" required> 
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="apellidos" >Apellidos</label>
+                  <input type="text" class="form__control" id="apellidos" name="Apellidos del Meastro" placeholder="Ingrese Apellidos" required> 
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="direccion">Dirección</label>
+                  <input type="text" class="form__control" id="direccion" placeholder="Ingrese Dirección" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="telefono">N.Teléfono</label>
+                  <input type="Teléfono" class="form__control" id="telefono" placeholder="Ingrese Numero de Teléfono" required>
+              </div>  
+              <div class="form__group">
+                <label class="form__label" for="email">Correo Electrónico</label>
+                  <input type="email" class="form__control" id="email" placeholder="Ingrese el Email" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="asignatura">Aréa o Asignatura</label>
+                <select class="form__control" id="asignatura" name="asignatura" placeholder="Escribe la asignatura" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option>Lengua y Literatura</option>
+                    <option>Lengua Extranjer(Ingles)</option>
+                    <option>Talleres de Arte y Cultura</option>
+                    <option>Creciendo en Valores</option>
+                    <option>Educación Física Y Práctica Deportiva</option>
+                    <option>Educación para Aprender, Emprender, Prosperar</option>
+                    <option>Ciencias Sociales(Geografía)</option>
+                    <option>Ciencias Sociales(Geografía/Historia)</option>
+                    <option>Ciencias Sociales(Geografía/Economía)</option>
+                    <option>Ciencias Sociales(Geografía/Filosofía)</option>
+                    <option>Ciencia Naturales</option>
+                    <option>Química</option>
+                    <option>Física</option>
+                    <option>Biología</option>
+                    <option>Matemática</option>
+                    <option>TI</option>    
+                </select>
+            </div>
+            </div>
+            <div class="form__button">
+              <button type="submit" class="form__button--green" onclick="guardarmaestro(event)">
+                Guardar
+              </button>
+              <button type="submit" class="form__button--purple"onclick="editarmaestro(event)">
+                Editar
+              </button>
+              <button type="submit" class="form__button--red" onclick="eliminarmaestro(event)">
+                Eliminar    
+              </button>
+            </div>
+          </form>
         </div>
-
-        <script>
-            const addForm = document.getElementById
-                ("form-validation");
-            addForm.addEventListener("submit", (e) => {
-                if (addForm.checkValidity() === false) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    addForm.classList.add('was-validated');
-                    return false;
-                }
-            })
-        </script>
-
-    </section>
-
-    <footer class="inam-footer">
-        <p>INAM-Masatepe</p>
-    </footer>
-
-    <script src="Script.js"></script>
+      </section>
+    </div>
+  </div>
 </body>
 
 </html>

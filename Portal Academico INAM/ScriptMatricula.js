@@ -6,27 +6,6 @@ function goBack() {
         window.location.href = "/"; // Redirige a la página principal como alternativa
     }
 }
-
-function guardarasignatura(event){
-    const codasignatura = document.getElementById("codasignatura").value;
-    const nombre = document.getElementById("nombre").value;
-    const anio = document.getElementById("anio").value;
-    const periodo = document.getElementById("periodo").value;
-
-    if(!codasignatura ||!nombre ||!anio ||!periodo ){
-        alert("Completa todos los Campos");
-        return;
-    }
-
-    console.log("Cód.Asignatura", codasignatura);
-    console.log("Nombre", nombre);
-    console.log("Año Academico", anio);
-    console.log("Periodo", periodo);
-
-    alert("Asignatura Guardada Correctamente");
-
-}
-
 document.addEventListener('DOMContentLoaded', function () {
   const profile = document.querySelector('.nav__profile');
   const imgProfile = profile.querySelector('.nav__profile-img');
@@ -45,3 +24,21 @@ document.addEventListener('DOMContentLoaded', function () {
     event.stopPropagation();
   });
 });
+
+
+// Modal
+  function AbrirModalDocumentos() {
+    document.getElementById("modalDocumentos").style.display = "flex";
+  }
+
+  function CerrarModalDocumentos() {
+    document.getElementById("modalDocumentos").style.display = "none";
+  }
+
+  // Cerrar si hacen clic fuera del modal
+  window.addEventListener("click", function (event) {
+    const modal = document.getElementById("modalDocumentos");
+    if (event.target == modal) {
+      CerrarModalDocumentos();
+    }
+  });
