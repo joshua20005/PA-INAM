@@ -7,23 +7,25 @@ function goBack() {
     }
 }
 
-function guardarasignatura(event){
-    const codasignatura = document.getElementById("codasignatura").value;
-    const nombre = document.getElementById("nombre").value;
+function guardargrupo(event){
+    const codigo = document.getElementById("codigo").value;
     const anio = document.getElementById("anio").value;
-    const periodo = document.getElementById("periodo").value;
+    const seccion = document.getElementById("seccion").value;
+    const alumnos = document.getElementById("alumnos").value;
+    const turno= document.getElementById("turno").value;
 
-    if(!codasignatura ||!nombre ||!anio ||!periodo ){
+    if(!codigo ||!anio ||!seccion ||!alumnos||!turno){
         alert("Completa todos los Campos");
         return;
     }
 
-    console.log("Cód.Asignatura", codasignatura);
-    console.log("Nombre", nombre);
-    console.log("Año Academico", anio);
-    console.log("Periodo", periodo);
+    console.log("Código", codigo);
+    console.log("Año Académico", anio);
+    console.log("Sección", seccion);
+    console.log("Cantidad de Alumnos", alumnos);
+    console.log("Turno", turno);
 
-    alert("Asignatura Guardada Correctamente");
+    alert("Grupo de Clase Guardado Correctamente");
 
 }
 

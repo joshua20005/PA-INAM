@@ -5,223 +5,236 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro De Matricula</title>
-    <link ref='preload' href="./Style.css" as="style">
-    <link rel="stylesheet" href="./Style.css">
-    <script src="Script.js"></script>
+    <link rel="stylesheet" href="./StyleMatricula.css">
+    <script src="ScriptMatricula.js"></script>
 </head>
 
 
-
 <body>
-    <div class=background-image-Matricula></div>
-    <header class="menu-header">
-        <div class="header-content">
-            <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo">
-            <h1>Portal Académico INAM (PA-INAM)</h1>
-        </div>
-    </header>
+    <div class="background"></div>
 
-    <nav class="navbar">
-        <div class="navbar-container">
-            <button class="back-button" onclick="goBack()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+  <nav class="nav">
+        <div class="nav__container">
+            <button class="nav__button" onclick="goBack()">
+                <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
                         clip-rule="evenodd" />
                 </svg>
-            </button>
+             </button>
         </div>
-        <ul>
-            <li class="navbar-item">
-                <img src="/images/Matric.02.1.png" alt="Icono" class="icon">
-                <span class="navbar-link" aria-disabled="true">Matriculas</span>
-            </li>
-        </ul>
-        <div class="container-busqueda">
-            <input type="busqueda" placeholder="Buscar...">
-            <button img src="./images/search.png" alt="icono" class="icon-busqueda"></button>
+        <div class="nav__item">
+            <span class="nav__title" aria-disabled="true">Matricula</span>
         </div>
+        <!--Foto de perfil del usuario que inicio sesion en el sistema-->
+		<div class="nav__profile">
+			<img src="./images/usuario.png" class="nav__profile-img">
+			<ul class="nav__profile-link">
+                <li><a href="#"><img src="./images/help.png" class="nav__profile-img" >Ayuda</a></li>
+				<li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
+			</ul>
+	    </div>     
     </nav>
+    <div class="separador"></div>
+    <div class="layout__conteiner">
+        <div class="layout">
+            <div class="layout__image">
+                <img src="./images/Notas.png" alt="Imagen">
+            </div>
 
-    <section class="form-section">
-        <div class="container">
-            <div class="title">Matricula Educativa 2025</div>
-            <form id="form-validation" novalidate>
-                <div class="form-group">
-                    <span> Codigo</span>
-                    <input type="" placeholder="Ingrese su Codigo" required>
-                    <small>Por favor ingrese su Codigo</small>
+            <section class="layout__section">
+                <div class="section">
+                    <div class="section__title">Detalles de Matricula</div>
+                    <form class="form" id="form-estudiante" novalidate>
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label class="form__label" for="codigo">Código</label>
+                                <input type="text" class="form__control" id="codigo" name="codigo" placeholder="Escribe el Código" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="fecha">Fecha</label>
+                                <input type="date" class="form__control" id="fecha" name="fecha" placeholder="Ingrese la Fecha" required >
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="turno" >Turno</label>
+                                <select class="form__control" id="turno" name="turno" placeholder="Selecione una opción" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>Matutino</option>
+                                    <option>Vespertino</option>
+                                </select>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="anio" >Año Académico</label>
+                                <select class="form__control" id="anio" name="anio" placeholder="Selecione una opción" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                    <option>Primer Año</option>
+                                    <option>Segundo Año</option>
+                                    <option>Tercer Año</option>
+                                    <option>Cuarto Año</option>
+                                    <option>Quinto Año</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">Modalidad</label>
-                    <select class="form-control">
-                        <option value="" disabled selected>Seleccione una opción</option>
-                        <option>Matutino</option>
-                        <option>Vespertino</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <span>Fecha</span>
-                    <input type="Fecha actual" placeholder="Ingrese fecha actual" required>
-                </div>
-                <div class="form-group">
-                    <span>Año</span>
-                    <input type="Año lectivo" placeholder="Ingrese el año lectivo" required>
-                    <small>Ingrese Año a cursar</small>
-                </div>
-            </form>
+            </section>
         </div>
-    </section>
-
-
-    <section class="form-section">
-        <div class="container">
-            <div class="title">Datos del Estudiante</div>
-            <form id="form-validation" novalidate>
-                <div class="form-group">
-                    <span> Codigo</span>
-                    <input type="text" placeholder="Ingrese su Codigo" required>
-                    <small>Por favor ingrese su Codigo</small>
+        <div class="layout">
+            <section class="layout__section">
+                <div class="section">
+                    <div class="section__title">Detalles de Estudiante</div>
+                    <form clas="form" id="form-validation"  novalidate>
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label class="form__label" for="codestudiante">Cód.Estudiante</label>
+                                <input type="text" class="form__control" id="codestudiante" name="codestudiante" placeholder="Ingrese el Código" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="nombre" >Nombre</label>
+                                <input type="text" class="form__control" id="nombre" name="nombreestudiante" placeholder="Ingrese el nombre de Estudiante" required> 
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="apellido">Apellidos</label>
+                                <input type="text" class="form__control" id="apellido" name="apellidoestudiante" placeholder="Ingrese los Apellidos" required>
+                            </div>
+                            <div class="form__group">
+                               <label class="form__label" for="fecha">Fecha de Nacimiento</label>
+                               <input type="date" class="form__control" id="fecha" name="fecha" placeholder="Ingrese la fecha de Nacimiento" required >
+                            </div>
+                            <div class="form__group">
+                               <label class="form__label" for="telefono">N.Teléfono</label>
+                               <input type="Teléfono" class="form__control" id="telefono" placeholder="Ingrese su Numero de Teléfono" required>
+                            </div>
+                            <div class="form__group">
+                               <label class="form__label" for="email">Correo Electrónico</label>
+                               <input type="email" class="form__control" id="email" placeholder="Ingrese su Email" required>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <span>Fecha de Nacimiento</span>
-                    <input type="date" placeholder="Ingrese su fecha de Nacimiento" required>
-                    <small>Ingrese su fecha de Nacimiento</small>
+            </section>
+            <section class="layout__section">
+                <div class="section">
+                    <div class="section__title">Documentos</div>
+                    <form class="form" id="form-detalles" novalidate>
+                        <div class="form__grid">
+                            <div class="form__grid--columna">
+                                <div class="form__group">
+                                    <img src="./images/Ico.PDF04.png" class="form__group-img">
+                                </div>
+                                <div class="form__group">
+                                    <!-- Boton para abrir el modal -->
+                                    <a href="#" onclick="AbrirModalDocumentos()" class="form__group-item">Agregar</a>
+                                </div>
+                            </div>
+                        </div>  
+                    </form>
                 </div>
-                <div class="form-group">
-                    <span>Nombres</span>
-                    <input type="text" placeholder="Ingrese su Nombre Completo" required>
-                    <small>Ingrese su Nombre Completo</small>
+            </section>
+            <div id="modalDocumentos" class="modal__container">
+                <div class="modal">
+                    <span class="modal__close" onclick="CerrarModalDocumentos()">&times;</span>
+                    <form class="form" id="documentosForm" >
+                        <div>
+                            <h2>Agregar Documento</h2>
+                        </div>
+                        <div class="form__grid">
+                            <div class="form__grid--columna">
+                                <div class="form__group">
+                                    <div class="form__group">
+                                        <label class="form__label" for="docnombre">Nombre del Documento</label>
+                                        <input input id="doc_nombre" type="text"  class="form__control" required>
+                                    </div>
+                                    <div class="form__group">
+                                        <label class="form__label" for="docarchivo">Seleccionar Archivo</label>
+                                        <input type="file" class="form__control" id="docarchivo" required> 
+                                    </div>
+                                        
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="form__button">
+                            <button type="submit" class="form__button--purple">Guardar</button>
+                        </div>  
+                    </form>
                 </div>
-                <div class="form-group">
-                    <span>N* de Telefono</span>
-                    <input type="number" placeholder="Ingrese su Numero de Telefono" required>
-                    <small>Ingrese su numero de telefono</small>
-                </div>
-                <div class="form-group">
-                    <span>Apellidos</span>
-                    <input type="text" placeholder="Ingrese sus Apellidos" required>
-                    <small>Ingrese sus Dos Apellidos</small>
-                </div>
-                <div class="form-group">
-                    <span>Email</span>
-                    <input type="email" placeholder="Ingrese su Correp Electronico" required>
-                    <small>Ingrese su Correo Electronico</small>
-                </div>
-
-                <div class="form-group">
-                    <span>Sexo</span>
-                    <select name="sexo" required>
-                        <option value="" disabled selected>Seleccione una opción</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Femenino">Femenino</option>
-                        <option value="Otro">Otro</option>
-                    </select>
-                    <small>Seleccione el sexo del estudiante</small>
-                </div>
-                <!--- revisar el what,explicacion ahi, tambien, con esto haremos el dashbord, recurso necesario saber el sexo, tambien mira su funcionalidad -->
-
-
-            </form>
+            </div>        
         </div>
-    </section>
-
-    <section class="form-section">
-        <div class="container">
-            <div class="title">Datos del Tutor</div>
-            <form id="form-validation" novalidate>
-                <div class="form-group">
-                    <span> N* de Cedula</span>
-                    <input type="Cedula" placeholder="Ingrese su Numero de Cedula" required>
-                    <small>Por favor ingrese su Numero de Cedula</small>
+        <div class="layout">
+            <section class="layout__section">
+                <div class="section">
+                    <div class="section__title">Detalles de Tutor</div>
+                    <form clas="form" id="form-validation"  novalidate>
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label class="form__label" for="ncedula">Número de Identidad</label>
+                                <input type="text" class="form__control" id="ncedula" name="Ncédula" placeholder="Ingrese su Numero de Cedula" required>
+                            </div>
+                            <div class="form__group">
+                               <label class="form__label" for="nombre" >Nombre</label>
+                               <input type="text" class="form__control" id="nombres" name="nombres" placeholder="Ingrese el Nombre" required> 
+                            </div>
+                            <div class="form__group">
+                               <label class="form__label" for="apellido">Apellidos</label>
+                               <input type="text" class="form__control" id="apellidos" name="apellidos" placeholder="Ingrese los Apellidos" required>
+                            </div>
+                            <div class="form__group">
+                               <label class="form__label" for="fecha">Fecha de Nacimiento</label>
+                               <input type="date" class="form__control" id="fecha" name="fecha" placeholder="Ingrese la fecha de Nacimiento" required >
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="direccion">Dirección</label>
+                                <input type="text" class="form__control" id="direccion" placeholder="Ingrese Dirección" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="telefono">N.Teléfono</label>
+                                <input type="Teléfono" class="form__control" id="telefono" placeholder="Ingrese su Numero de Teléfono" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="email">Correo Electrónico</label>
+                               <input type="email" class="form__control" id="email" placeholder="Ingrese su Email" required>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <span>N* de Telefono</span>
-                    <input type="Numero de telefono" placeholder="Ingrese su Numero de Telefono" required>
-                    <small>Ingrese su Numero de Telefono</small>
+            </section>
+            <section class="layout__section">
+                <div class="section">
+                    <div class="section__title">Información del Grupo</div>
+                    <form class="form" id="form-detalles" novalidate>
+                        <div class="form__grid">
+                            <div class="form__grid--columna">
+                                <div class="form__group">
+                                    <label class="form__label" for="seccion" >Sección</label>
+                                    <select class="form__control" id="seccion" name="seccion" placeholder="Selecione una opcion" required>
+                                        <option value="" disabled selected>Seleccione una opción</option>
+                                        <option>A</option>
+                                        <option>B</option>
+                                        <option>C</option>
+                                        <option>D</option>
+                                        <option>E</option>
+                                        <option>F</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__button">
+                            <button type="submit" class="form__button--green" onclick="guardarnotas(event)">
+                                Guardar
+                            </button>
+                            <button type="submit" class="form__button--purple"onclick="editarnotas(event)">
+                                Editar
+                            </button>
+                            <button type="submit" class="form__button--red" onclick="eliminarnotas(event)">
+                                Eliminar    
+                            </button> 
+                        </div> 
+                    </form>
                 </div>
-                <div class="form-group">
-                    <span>Nombre Completo</span>
-                    <input type="Nombre Completo" placeholder="Ingrese Nombre Completo" required>
-                    <small>Por favor ingrese su Nombre Completo</small>
-                </div>
-                <div class="form-group">
-                    <span>Correo Electronico</span>
-                    <input type="Email" placeholder="Ingrese su correo electronico" required>
-                    <small>Ingrese su correo electronico</small>
-                </div>
-                <div class="form-group">
-                    <span>Fecha de Nacimiento</span>
-                    <input type="date" placeholder="Ingrese su fecha de nacimiento" required>
-                    <small>Por favor ingrese su fecha de nacimiento</small>
-                </div>
-                <div class="form-group">
-                    <span>Dirección</span>
-                    <input type="Dirreccion" placeholder="Ingrese su Direccion actual" required>
-                    <small>Ingrese su Direccion actual</small>
-                </div>
-                <div class="form-section1">
-                    <span>Adjuntar Documentos Personales PDF</span>
-                    <input type="file" place.holder="Ingrese los documentos">
-                </div>
-            </form>
+            </section>
         </div>
-    </section>
-
-    <section class="form-section">
-        <div class="container">
-            <div class="title">Informacion de Grupo</div>
-            <form id="form-validation" novalidate>
-                <nav class="navbar"> </nav>
-                <div class="form-group">
-                    <label class="control-label">Sección</label>
-                    <select class="form-control">
-                        <option value="" disabled selected>Seleccione una opción</option>
-                        <option>A-Matutino</option>
-                        <option>B-Matutino</option>
-                        <option>C-Matutino</option>
-                        <option>D-Matutino</option>
-                        <option>E-Vespertino</option>
-                        <option>F-Vespertino</option>
-                        <option>G-Vespertino</option>
-                        <option>H-Vespertino</option>
-                        <option>I-Vespertino</option>
-                    </select>
-                </div>
-
-                </li>
-                <div class="button-Res-Matr">
-                    <input type="submit" value="Registrarse">
-                </div>
-                <div class="button-Edit-Matr">
-                    <input type="submit" value="Editar">
-                </div>
-                <div class="button-Elim-Matr">
-                    <input type="submit" value="Eliminar">
-                </div>
-                </nav>
-                <script>
-                    const addForm = document.getElementById
-                        ("form-validation");
-                    addForm.addEventListener("submit", (e) => {
-                        if (addForm.checkValidity() === false) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            addForm.classList.add('was-validated');
-                            return false;
-                        }
-                    })
-                </script>
-        </div>
-    </section>
-
-    </section>
-
-    <footer class="inam-footer">
-        <p>INAM-Masatepe</p>
-    </footer>
-
-    <script src="Script.js"></script>
+    </div>
 </body>
 
 </html>

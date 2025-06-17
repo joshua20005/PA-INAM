@@ -7,23 +7,29 @@ function goBack() {
     }
 }
 
-function guardarhorario(event){
-    const docente = document.getElementById("docente").value;
-    const anio = document.getElementById("anio").value;
+function guardarmaestro(event){
+    const Nmaestro = document.getElementById("Nmaestro").value;
+    const nombres = document.getElementById("nombres").value;
+    const apellidos = document.getElementById("apellidos").value;
+    const direccion = document.getElementById("direccion").value;
+    const telefono = document.getElementById("telefono").value;
+    const email = document.getElementById("email").value;
     const asignatura = document.getElementById("asignatura").value;
-    const hora = document.getElementById("hora").value;
 
-    if(!docente ||!anio ||!asignatura ||!hora ){
+    if(!Nmaestro ||!nombres ||!apellidos ||!direccion ||!telefono ||!email ||!asignatura ){
         alert("Completa todos los Campos");
         return;
     }
 
-    console.log("Docente", docente);
-    console.log("Año", anio);
-    console.log("Asignatura", asignatura);
-    console.log("Hora", hora);
+    console.log("N.Mestros", Nmaestro);
+    console.log("Nombres", nombres);
+    console.log("Apellidos", apellidos);
+    console.log("Dirección", direccion);
+    console.log("N.Teléfono", telefono);
+    console.log("Correo Electrónico", email);
+    console.log("Aréa o Asignatura", asignatura);
 
-    alert("Horario Guardado Correctamente");
+    alert("Registro de Maestro Guardado Correctamente");
 
 }
 

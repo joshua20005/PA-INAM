@@ -14,21 +14,31 @@
     <nav class="nav">
         <div class="nav__container">
             <button class="nav__button" onclick="goBack()">
-                <svg xmlns="Portal Academico INAM\assets\icons\Flecha.png" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                        clip-rule="evenodd" />
-                </svg>
-            </button>
+            <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+        </button>
         </div>
         <div class="nav__item">
             <span class="nav__title" aria-disabled="true">Horario</span>
         </div>
+        <!--Foto de perfil del usuario que inicio sesion en el sistema-->
+		<div class="nav__profile">
+			<img src="./images/usuario.png" class="nav__profile-img">
+			<ul class="nav__profile-link">
+                <li><a href="#"><img src="./images/help.png" class="nav__profile-img" >Ayuda</a></li>
+				<li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
+			</ul>
+	    </div>     
     </nav>
+    <div class="separador"></div>
+
     <div class="layout__conteiner">
         <div class="layout">
             <div class="layout__image">
-                <img src="./images/Horar.03.3.png" alt="Imagen">
+                <img src="./images/Horario.png" alt="Imagen">
             </div>
 
             <section class="layout__section">
