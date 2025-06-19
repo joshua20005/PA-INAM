@@ -2,96 +2,104 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Tutor</title>
-    <link ref='preload' href="./Style.css" as="style">
-    <link rel="stylesheet" href="./Style.css">
-    <script src="Script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Tutor</title>
+  <link rel="stylesheet" href="./StyleTutor.css">
+
 </head>
 
-
-
 <body>
-    <div class=background-image-Tutor></div>
-    <header class="menu-header">
-        <div class="header-content">
-            <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo">
-            <h1>Portal Académico INAM (PA-INAM)</h1>
+  <div class="background"></div>
+
+  <nav class="nav">
+    <div class="nav__container">
+      <button class="nav__button" onclick="goBack()">
+        <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20"
+          fill="currentColor">
+          <path fill-rule="evenodd"
+            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+            clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+    <div class="nav__item">
+      <span class="nav__title" aria-disabled="true">Tutor</span>
+    </div>
+    <!--Foto de perfil del usuario que inicio sesion en el sistema-->
+    <div class="nav__profile">
+      <img src="./images/usuario.png" class="nav__profile-img">
+      <ul class="nav__profile-link">
+        <li><a href="#"><img src="./images/help.png" class="nav__profile-img">Ayuda</a></li>
+        <li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="separador"></div>
+
+  <div class="layout__conteiner">
+    <div class="layout">
+      <div class="layout__image">
+        <img src="./images/Tutor.png" alt="imagen">
+      </div>
+
+      <section class="layout__section">
+        <div class="section">
+          <div class="section__title">Registro de Tutor</div>
+          <form class="form" id="form-validation" novalidate>
+            <div class="form__grid">
+              <div class="form__group">
+                <label class="form__label" for="code_tutor">Número de Identidad</label>
+                <input type="text" class="form__control" id="code_tutor" name="Ncédula"
+                  placeholder="Ingrese su Numero de Cedula" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="name_tutor">Nombre</label>
+                <input type="text" class="form__control" id="name_tutor" name="nombres" placeholder="Ingrese el Nombre"
+                  required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="surname_tutor">Apellidos</label>
+                <input type="text" class="form__control" id="surname_tutor" name="apellidos"
+                  placeholder="Ingrese los Apellidos" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="birthdate_tutor">Fecha de Nacimiento</label>
+                <input type="date" class="form__control" id="birthdate_tutor" name="fecha"
+                  placeholder="Ingrese la fecha de Nacimiento" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="address_tutor">Dirección</label>
+                <input type="text" class="form__control" id="address_tutor" placeholder="Ingrese Dirección" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="phone_tutor">N.Teléfono</label>
+                <input type="Teléfono" class="form__control" id="phone_tutor"
+                  placeholder="Ingrese su Numero de Teléfono" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="email_tutor">Correo Electrónico</label>
+                <input type="email" class="form__control" id="email_tutor" placeholder="Ingrese su Email" required>
+              </div>
+            </div>
+            <div class="form__button">
+              <button id="register-btn-tutor" type="button" class="form__button--green" onclick="registrarTutor()">
+                Guardar
+              </button>
+              <button id="edit-btn-tutor" type="button" class="form__button--purple" onclick="editarTutor()">
+                Editar
+              </button>
+              <button type="button" class="form__button--red">
+                Eliminar
+              </button>
+            </div>
+          </form>
         </div>
-    </header>
-
-    <nav class="navbar">
-        <div class="navbar-container">
-            <button class="back-button" onclick="goBack()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                        clip-rule="evenodd" />
-                </svg>
-            </button>
-        </div>
-        <ul>
-            <li class="navbar-item">
-                <img src="/images/Tutor.01.3.png" alt="Icono" class="icon">
-                <span class="navbar-link" aria-disabled="true">Tutor</span>
-            </li>
-        </ul>
-    </nav>
-
-
-    <section class="sectionForm">
-        <div class="container">
-            <div class="title">Registro de Tutor</div>
-            <form id="form-validation" novalidate>
-                <div class="form-group">
-                    <span> Numero Cedula</span>
-                    <input type="Codigo" placeholder="Ingrese su Numero de Cedula" required>
-                    <small>Por favor ingrese su Numero de cedula </small>
-                </div>
-                <div class="form-group">
-                    <span>Nombres</span>
-                    <input type="Nombres" placeholder="Ingrese sus Nombres" required>
-                    <small>Por favor ingrese sus nombres</small>
-                </div>
-                <div class="form-group">
-                    <span>Apellidos</span>
-                    <input type="Apellidos" placeholder="Ingrese sus Apellidos" required>
-                    <small>Por favor ingrese sus apellidos</small>
-                </div>
-                <div class="form-group">
-                    <span>Fecha de Nacimiento</span>
-                    <input type="Fecha de Nacimiento" placeholder="Ingrese su Fecha de Nacimiento" required>
-                    <small>Por favor ingrese su fecha de nacimiento</small>
-                </div>
-                <div class="form-group">
-                    <span>Telefono</span>
-                    <input type="Telefono" placeholder="Ingrese su Numero de Telefono" required>
-                    <small>Por favor Ingrese su Codigo</small>
-                </div>
-                <div class="form-group">
-                    <span>Correo Electronico</span>
-                    <input type="email" placeholder="Ingrese su Email" required>
-                    <small>Por favor ingrese su email</small>
-                </div>
-                <div class="form-group">
-                    <span>Dirección</span>
-                    <input type="text" placeholder="Ingrese su Dirección" required>
-                    <small>Por favor ingrese su Dirección</small>
-                </div>
-                <div class="button-Tutor">
-                    <input type="submit" value="Registrarse">
-                </div>
-            </form>
-        </div>
-
-    </section>
-
-    <footer class="inam-footer">
-        <p>INAM-Masatepe</p>
-    </footer>
-
-    <script src="Script.js"></script>
+      </section>
+    </div>
+  </div>
+  <script src="ScriptTutor.js"></script>
 </body>
 
 </html>
