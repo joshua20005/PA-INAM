@@ -72,15 +72,32 @@ function guardargrupo(e) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(grupo)
   })
-    .then(res => {
-      if (!res.ok) return res.json().then(data => { throw new Error(data.error || "Error") });
-      return res.json();
-    })
-    .then(data => {
+    .then(async (res) => {
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error("Error de validación:", data);
+
+        let errores = data.error || data; // En caso de que venga como data.error o directamente como data
+
+        let mensaje = "";
+
+        for (let campo in errores) {
+          const mensajeCampo = Array.isArray(errores[campo])
+            ? errores[campo].join(", ")
+            : errores[campo];
+          mensaje += `• ${campo}: ${mensajeCampo}\n`;
+        }
+
+        throw new Error(mensaje || "Error desconocido");
+      }
+
       alert(data.message || "✅ Grupo creado correctamente");
       document.getElementById("form-validation").reset();
     })
-    .catch(err => alert("❌ " + err.message));
+    .catch((err) => {
+      alert("❌ " + err.message);
+    });
 }
 
 

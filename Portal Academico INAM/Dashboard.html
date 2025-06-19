@@ -38,8 +38,30 @@
     </nav>
     <div class="separador"></div>
 
+    <div class="layout__container">
+        <section class="layout__section">
+            <div class="section__title">📊 Estadísticas Generales</div>
+            <div class="form__grid">
+                <div class="form__group">
+                    <canvas id="matriculaChart" width="300" height="300"></canvas>
+                </div>
+                <div class="form__group">
+                    <canvas id="grupoChart" width="300" height="300"></canvas>
+                </div>
+                <div class="form__group">
+                    <canvas id="tutorChart" width="300" height="300"></canvas>
+                </div>
 
+                <div class="section">
+                    <div class="section__title">Estudiantes por Grupo</div>
+                    <canvas id="grupoPieChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
 
+    <script src="./ScriptDashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>
