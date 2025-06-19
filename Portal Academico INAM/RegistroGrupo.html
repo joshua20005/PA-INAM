@@ -6,35 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Grupo</title>
     <link rel="stylesheet" href="./StyleGrupo.css">
-    <script src="ScriptGrupo.js"></script>
+
 </head>
 
 <body>
     <div class="background"></div>
-    
+
     <nav class="nav">
         <div class="nav__container">
             <button class="nav__button" onclick="goBack()">
-                <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20"
+                    fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
                         clip-rule="evenodd" />
                 </svg>
-             </button>
+            </button>
         </div>
         <div class="nav__item">
             <span class="nav__title" aria-disabled="true">Grupo de Clases</span>
         </div>
         <!--Foto de perfil del usuario que inicio sesion en el sistema-->
-		<div class="nav__profile">
-			<img src="./images/usuario.png" class="nav__profile-img">
-			<ul class="nav__profile-link">
-                <li><a href="#"><img src="./images/help.png" class="nav__profile-img" >Ayuda</a></li>
-				<li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
-			</ul>
-	    </div>     
+        <div class="nav__profile">
+            <img src="./images/usuario.png" class="nav__profile-img">
+            <ul class="nav__profile-link">
+                <li><a href="#"><img src="./images/help.png" class="nav__profile-img">Ayuda</a></li>
+                <li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
+            </ul>
+        </div>
     </nav>
     <div class="separador"></div>
+
+    <!-- Comienzo del formulario para la creacion de los grupos -->
     <div class="layout__conteiner">
         <div class="layout">
             <div class="layout__image">
@@ -44,15 +47,17 @@
             <section class="layout__section">
                 <div class="section">
                     <div class="section__title">Registro de Grupo de Clase</div>
-                    <form clas="form" id="form-validation"  novalidate>
+                    <form class="form" id="form-validation" novalidate>
                         <div class="form__grid">
                             <div class="form__group">
-                                <label class="form__label" for="codigo">Código</label>
-                                <input type="text" class="form__control" id="codigo" name="codigo" placeholder="Ingrese el codigo" required>
+                                <label class="form__label" for="code_group">Código</label>
+                                <input type="text" class="form__control" id="code_group" name="codigo"
+                                    placeholder="Ingrese el codigo" required>
                             </div>
                             <div class="form__group">
-                                <label class="form__label" for="anio" >Año Académico</label>
-                                <select class="form__control" id="anio" name="anio" placeholder="Selecione una opcion" required>
+                                <label class="form__label" for="level_group">Año Académico</label>
+                                <select class="form__control" id="level_group" name="anio"
+                                    placeholder="Selecione una opcion" required>
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option>Primer Año</option>
                                     <option>Segundo Año</option>
@@ -62,8 +67,9 @@
                                 </select>
                             </div>
                             <div class="form__group">
-                                <label class="form__label" for="seccion" >Sección</label>
-                                <select class="form__control" id="seccion" name="seccion" placeholder="Selecione una opcion" required>
+                                <label class="form__label" for="section_group">Sección</label>
+                                <select class="form__control" id="section_group" name="seccion"
+                                    placeholder="Selecione una opcion" required>
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option>A</option>
                                     <option>B</option>
@@ -71,11 +77,12 @@
                                     <option>D</option>
                                     <option>E</option>
                                     <option>F</option>
-                              </select>
+                                </select>
                             </div>
                             <div class="form__group">
-                                <label class="form__label" for="alumnos" >Cantidad de Alumnos</label>
-                                <select class="form__control" id="alumnos" name="alumnos" placeholder="Selecione una opcion" required>
+                                <label class="form__label" for="amount_group">Cantidad de Alumnos</label>
+                                <select class="form__control" id="amount_group" name="alumnos"
+                                    placeholder="Selecione una opcion" required>
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option>25</option>
                                     <option>27</option>
@@ -85,26 +92,28 @@
                                     <option>33</option>
                                     <option>35</option>
                                     <option>36</option>
+                                    <option>40</option>
                                 </select>
                             </div>
                             <div class="form__group">
-                            <label class="form__label" for="turno" >Turno</label>
-                                <select class="form__control" id="turno" name="turno" placeholder="Selecione una opción" required>
+                                <label class="form__label" for="turno">Turno</label>
+                                <select class="form__control" id="turno" name="turno" placeholder="Selecione una opción"
+                                    required>
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option>Matutino</option>
                                     <option>Vespertino</option>
                                 </select>
-                            </div> 
+                            </div>
                         </div>
                         <div class="form__button">
                             <button type="submit" class="form__button--green" onclick="guardargrupo(event)">
                                 Guardar
                             </button>
-                            <button type="submit" class="form__button--purple"onclick="editargrupo(event)">
+                            <button type="button" class="form__button--purple" onclick="editargrupo(event)">
                                 Editar
                             </button>
-                            <button type="submit" class="form__button--red" onclick="eliminargrupo(event)">
-                                Eliminar    
+                            <button type="button" class="form__button--red">
+                                Eliminar
                             </button>
                         </div>
                     </form>
@@ -112,6 +121,9 @@
             </section>
         </div>
     </div>
+    <!-- Fin del formulario para la creacion de los grupos -->
+
+    <script src="ScriptGrupo.js"></script>
 </body>
 
 </html>

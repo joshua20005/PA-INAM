@@ -6,66 +6,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro De Matricula</title>
     <link rel="stylesheet" href="./StyleMatricula.css">
-    <script src="ScriptMatricula.js"></script>
+
 </head>
 
 
 <body>
     <div class="background"></div>
 
-  <nav class="nav">
+    <nav class="nav">
         <div class="nav__container">
             <button class="nav__button" onclick="goBack()">
-                <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="Portal Academico INAM\assets\icons\flecha.svg" class="nav__button-icon" viewBox="0 0 20 20"
+                    fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
                         clip-rule="evenodd" />
                 </svg>
-             </button>
+            </button>
         </div>
         <div class="nav__item">
             <span class="nav__title" aria-disabled="true">Matricula</span>
         </div>
         <!--Foto de perfil del usuario que inicio sesion en el sistema-->
-		<div class="nav__profile">
-			<img src="./images/usuario.png" class="nav__profile-img">
-			<ul class="nav__profile-link">
-                <li><a href="#"><img src="./images/help.png" class="nav__profile-img" >Ayuda</a></li>
-				<li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
-			</ul>
-	    </div>     
+        <div class="nav__profile">
+            <img src="./images/usuario.png" class="nav__profile-img">
+            <ul class="nav__profile-link">
+                <li><a href="#"><img src="./images/help.png" class="nav__profile-img">Ayuda</a></li>
+                <li><a href="#"><img src="./images/close.png" class="nav__profile-img">Cerrar Sesión</a></li>
+            </ul>
+        </div>
     </nav>
     <div class="separador"></div>
-    <div class="layout__conteiner">
-        <div class="layout">
-            <div class="layout__image">
-                <img src="./images/Notas.png" alt="Imagen">
-            </div>
 
-            <section class="layout__section">
-                <div class="section">
-                    <div class="section__title">Detalles de Matricula</div>
-                    <form class="form" id="form-estudiante" novalidate>
+
+    <!-- Formulario completo para el almacenamiento de datos -->
+    <form id="form_matricula" enctype="multipart/form-data">
+        <div class="layout__conteiner">
+            <div class="layout">
+                <div class="layout__image">
+                    <img src="./images/Notas.png" alt="Imagen">
+                </div>
+
+                <!-- Sección de Detalles de Matrícula -->
+                <section class="layout__section">
+                    <div class="section">
+                        <div class="section__title">Detalles de Matricula</div>
                         <div class="form__grid">
                             <div class="form__group">
-                                <label class="form__label" for="codigo">Código</label>
-                                <input type="text" class="form__control" id="codigo" name="codigo" placeholder="Escribe el Código" required>
+                                <label class="form__label" for="code_registration">Código</label>
+                                <input type="text" class="form__control" id="code_registration" name="codigo"
+                                    placeholder="Escribe el Código" required>
                             </div>
                             <div class="form__group">
-                                <label class="form__label" for="fecha">Fecha</label>
-                                <input type="date" class="form__control" id="fecha" name="fecha" placeholder="Ingrese la Fecha" required >
+                                <label class="form__label" for="date_registration">Fecha</label>
+                                <input type="date" class="form__control" id="date_registration" name="fecha" required>
                             </div>
                             <div class="form__group">
-                                <label class="form__label" for="turno" >Turno</label>
-                                <select class="form__control" id="turno" name="turno" placeholder="Selecione una opción" required>
+                                <label class="form__label" for="mode_registration">Turno</label>
+                                <select class="form__control" id="mode_registration" name="turno" required>
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option>Matutino</option>
                                     <option>Vespertino</option>
                                 </select>
                             </div>
                             <div class="form__group">
-                                <label class="form__label" for="anio" >Año Académico</label>
-                                <select class="form__control" id="anio" name="anio" placeholder="Selecione una opción" required>
+                                <label class="form__label" for="level_registration">Año Académico</label>
+                                <select class="form__control" id="level_registration" name="anio" required>
                                     <option value="" disabled selected>Seleccione una opción</option>
                                     <option>Primer Año</option>
                                     <option>Segundo Año</option>
@@ -75,166 +81,153 @@
                                 </select>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </section>
-        </div>
-        <div class="layout">
-            <section class="layout__section">
-                <div class="section">
-                    <div class="section__title">Detalles de Estudiante</div>
-                    <form clas="form" id="form-validation"  novalidate>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sección de Estudiante -->
+            <div class="layout">
+                <section class="layout__section">
+                    <div class="section">
+                        <div class="section__title">Detalles de Estudiante</div>
                         <div class="form__grid">
                             <div class="form__group">
-                                <label class="form__label" for="codestudiante">Cód.Estudiante</label>
-                                <input type="text" class="form__control" id="codestudiante" name="codestudiante" placeholder="Ingrese el Código" required>
+                                <label class="form__label" for="code_student">Cód.Estudiante</label>
+                                <input type="text" class="form__control" id="code_student" name="codestudiante"
+                                    required>
                             </div>
                             <div class="form__group">
-                                <label class="form__label" for="nombre" >Nombre</label>
-                                <input type="text" class="form__control" id="nombre" name="nombreestudiante" placeholder="Ingrese el nombre de Estudiante" required> 
+                                <label class="form__label" for="name_student">Nombre</label>
+                                <input type="text" class="form__control" id="name_student" name="nombreestudiante"
+                                    required>
                             </div>
                             <div class="form__group">
-                                <label class="form__label" for="apellido">Apellidos</label>
-                                <input type="text" class="form__control" id="apellido" name="apellidoestudiante" placeholder="Ingrese los Apellidos" required>
+                                <label class="form__label" for="surname_student">Apellidos</label>
+                                <input type="text" class="form__control" id="surname_student" name="apellidoestudiante"
+                                    required>
                             </div>
                             <div class="form__group">
-                               <label class="form__label" for="fecha">Fecha de Nacimiento</label>
-                               <input type="date" class="form__control" id="fecha" name="fecha" placeholder="Ingrese la fecha de Nacimiento" required >
+                                <label class="form__label" for="birthday_student">Fecha de Nacimiento</label>
+                                <input type="date" class="form__control" id="birthday_student" name="fecha_nac"
+                                    required>
                             </div>
                             <div class="form__group">
-                               <label class="form__label" for="telefono">N.Teléfono</label>
-                               <input type="Teléfono" class="form__control" id="telefono" placeholder="Ingrese su Numero de Teléfono" required>
+                                <label class="form__label" for="phone_student">N.Teléfono</label>
+                                <input type="tel" class="form__control" id="phone_student" name="telefono" required>
                             </div>
                             <div class="form__group">
-                               <label class="form__label" for="email">Correo Electrónico</label>
-                               <input type="email" class="form__control" id="email" placeholder="Ingrese su Email" required>
+                                <label class="form__label" for="email_student">Correo Electrónico</label>
+                                <input type="email" class="form__control" id="email_student" name="email" required>
                             </div>
+                            <input type="hidden" id="id_student" name="id_student">
                         </div>
-                    </form>
-                </div>
-            </section>
-            <section class="layout__section">
-                <div class="section">
-                    <div class="section__title">Documentos</div>
-                    <form class="form" id="form-detalles" novalidate>
+                    </div>
+                </section>
+
+                <!-- Sección Documentos -->
+                <section class="layout__section">
+                    <div class="section">
+                        <div class="section__title">Documentos</div>
                         <div class="form__grid">
                             <div class="form__grid--columna">
                                 <div class="form__group">
                                     <img src="./images/Ico.PDF04.png" class="form__group-img">
                                 </div>
                                 <div class="form__group">
-                                    <!-- Boton para abrir el modal -->
                                     <a href="#" onclick="AbrirModalDocumentos()" class="form__group-item">Agregar</a>
                                 </div>
                             </div>
-                        </div>  
-                    </form>
-                </div>
-            </section>
-            <div id="modalDocumentos" class="modal__container">
-                <div class="modal">
-                    <span class="modal__close" onclick="CerrarModalDocumentos()">&times;</span>
-                    <form class="form" id="documentosForm" >
-                        <div>
+                        </div>
+                    </div>
+                </section>
+
+                <div id="modalDocumentos" class="modal__container">
+                    <div class="modal">
+                        <span class="modal__close" onclick="CerrarModalDocumentos()">&times;</span>
+                        <div class="form">
                             <h2>Agregar Documento</h2>
-                        </div>
-                        <div class="form__grid">
-                            <div class="form__grid--columna">
-                                <div class="form__group">
+                            <div class="form__grid">
+                                <div class="form__grid--columna">
                                     <div class="form__group">
-                                        <label class="form__label" for="docnombre">Nombre del Documento</label>
-                                        <input input id="doc_nombre" type="text"  class="form__control" required>
+                                        <label class="form__label" for="name_document">Nombre del Documento</label>
+                                        <input id="name_document" type="text" class="form__control" required>
                                     </div>
                                     <div class="form__group">
-                                        <label class="form__label" for="docarchivo">Seleccionar Archivo</label>
-                                        <input type="file" class="form__control" id="docarchivo" required> 
+                                        <label class="form__label" for="file">Seleccionar Archivo</label>
+                                        <input type="file" class="form__control" id="file" required>
                                     </div>
-                                        
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="form__button">
-                            <button type="submit" class="form__button--purple">Guardar</button>
-                        </div>  
-                    </form>
-                </div>
-            </div>        
-        </div>
-        <div class="layout">
-            <section class="layout__section">
-                <div class="section">
-                    <div class="section__title">Detalles de Tutor</div>
-                    <form clas="form" id="form-validation"  novalidate>
-                        <div class="form__grid">
-                            <div class="form__group">
-                                <label class="form__label" for="ncedula">Número de Identidad</label>
-                                <input type="text" class="form__control" id="ncedula" name="Ncédula" placeholder="Ingrese su Numero de Cedula" required>
-                            </div>
-                            <div class="form__group">
-                               <label class="form__label" for="nombre" >Nombre</label>
-                               <input type="text" class="form__control" id="nombres" name="nombres" placeholder="Ingrese el Nombre" required> 
-                            </div>
-                            <div class="form__group">
-                               <label class="form__label" for="apellido">Apellidos</label>
-                               <input type="text" class="form__control" id="apellidos" name="apellidos" placeholder="Ingrese los Apellidos" required>
-                            </div>
-                            <div class="form__group">
-                               <label class="form__label" for="fecha">Fecha de Nacimiento</label>
-                               <input type="date" class="form__control" id="fecha" name="fecha" placeholder="Ingrese la fecha de Nacimiento" required >
-                            </div>
-                            <div class="form__group">
-                                <label class="form__label" for="direccion">Dirección</label>
-                                <input type="text" class="form__control" id="direccion" placeholder="Ingrese Dirección" required>
-                            </div>
-                            <div class="form__group">
-                                <label class="form__label" for="telefono">N.Teléfono</label>
-                                <input type="Teléfono" class="form__control" id="telefono" placeholder="Ingrese su Numero de Teléfono" required>
-                            </div>
-                            <div class="form__group">
-                                <label class="form__label" for="email">Correo Electrónico</label>
-                               <input type="email" class="form__control" id="email" placeholder="Ingrese su Email" required>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </section>
-            <section class="layout__section">
-                <div class="section">
-                    <div class="section__title">Información del Grupo</div>
-                    <form class="form" id="form-detalles" novalidate>
-                        <div class="form__grid">
-                            <div class="form__grid--columna">
-                                <div class="form__group">
-                                    <label class="form__label" for="seccion" >Sección</label>
-                                    <select class="form__control" id="seccion" name="seccion" placeholder="Selecione una opcion" required>
-                                        <option value="" disabled selected>Seleccione una opción</option>
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                        <option>D</option>
-                                        <option>E</option>
-                                        <option>F</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="form__button">
-                            <button type="submit" class="form__button--green" onclick="guardarnotas(event)">
-                                Guardar
-                            </button>
-                            <button type="submit" class="form__button--purple"onclick="editarnotas(event)">
-                                Editar
-                            </button>
-                            <button type="submit" class="form__button--red" onclick="eliminarnotas(event)">
-                                Eliminar    
-                            </button> 
-                        </div> 
-                    </form>
+                    </div>
                 </div>
-            </section>
+            </div>
+
+            <!-- Sección de Tutor y Grupo -->
+            <div class="layout">
+                <section class="layout__section">
+                    <div class="section">
+                        <div class="section__title">Detalles de Tutor</div>
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label class="form__label" for="code_tutor">Número de Identidad</label>
+                                <input type="text" class="form__control" id="code_tutor" name="Ncédula" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="name_tutor">Nombre</label>
+                                <input type="text" class="form__control" id="name_tutor" name="nombres" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="surname_tutor">Apellidos</label>
+                                <input type="text" class="form__control" id="surname_tutor" name="apellidos" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="birthdate_tutor">Fecha de Nacimiento</label>
+                                <input type="date" class="form__control" id="birthdate_tutor" name="fecha" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="address_tutor">Dirección</label>
+                                <input type="text" class="form__control" id="address_tutor" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="phone_tutor">N.Teléfono</label>
+                                <input type="tel" class="form__control" id="phone_tutor" required>
+                            </div>
+                            <div class="form__group">
+                                <label class="form__label" for="email_tutor">Correo Electrónico</label>
+                                <input type="email" class="form__control" id="email_tutor" required>
+                            </div>
+                            <input type="hidden" id="id_tutor" name="id_tutor">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sección de Grupo -->
+                <section class="layout__section">
+                    <div class="section">
+                        <div class="section__title">Información del Grupo</div>
+                        <div class="form__grid--columna">
+                            <div class="form__group">
+                                <label class="form__label" for="group_select">Sección</label>
+                                <select class="form__control" id="group_select" name="seccion" required>
+                                    <option value="" disabled selected>Seleccione una opción</option>
+                                </select>
+                                <input type="hidden" id="id_group" name="id_group">
+                            </div>
+                        </div>
+                        <div class="form__button">
+                            <button type="button" class="form__button--green"
+                                onclick="guardarMatricula()">Guardar</button>
+                            <button type="button" class="form__button--purple">Editar</button>
+                            <button type="button" class="form__button--red">Eliminar</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-    </div>
+    </form>
+
+    <script src="ScriptMatricula.js"></script>
 </body>
 
 </html>
