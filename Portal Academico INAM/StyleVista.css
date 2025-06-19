@@ -28,7 +28,7 @@ body {
 /* Cabecera con logo */
 .menu-header {
   padding: 1rem;
-  background: #212cac;
+  background: #5d3ca6;
   color: white;
 }
 
@@ -828,6 +828,89 @@ section {
 .container__mision .vision__container .box .client-info {
   display: flex;
   align-items: center;
+}
+
+/*Aqui comienza el diseño de la vista de actividades*/
+.container__actividades {
+  background-color: #fff;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  border-bottom: 15px double #5d3ca6;
+  border-top: 15px double #5d3ca6;
+  margin-top: 2.5px;
+  border-style: groove;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.heading {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--black);
+  justify-content: center;
+  background-color: #5d3ca6;
+  width: 100%;  
+}
+
+.heading h2 {
+  font-size: 3rem;
+  color: var(--black);
+  box-shadow: var(--black);
+  background-color: rgb(243, 190, 16);
+}
+
+.vision__container {
+  display: flex;
+  margin: auto;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+}
+.container__actividades .box {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  background-color: var(--white);
+  text-align: center;
+  padding: 1rem;
+  gap: 1.5rem;
+  border-radius: 2rem;
+  margin-right: 2rem;
+}
+.container__actividades .box .img img {
+  height: 100%;
+  width: 90%;
+  justify-content: center;
+  display: flex;
+}
+.container__actividades .box .img img:hover {
+  transform: scale(1);
+}
+.container__actividades .box .content {
+  margin-bottom: 2rem;
+}
+
+
+.container__actividades .box .person__review h3 {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: var(--black);
+  text-shadow: var(--box-shadow);
+  display: flex;
+  font-size: 1.5rem;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 20px;
+
+}
+.vision__container .box .content p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--black);
+  margin-top: 10px;
 }
 
 /*Aqui comienza el footer*/
