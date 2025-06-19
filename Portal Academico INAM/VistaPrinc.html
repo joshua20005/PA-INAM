@@ -1,96 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu principal</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu principal</title>
-  <link rel="stylesheet" href="StyleVista.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-</head>
+    <!-- Estilos locales -->
+    <link rel="stylesheet" href="StyleVista.css" />
 
-<body>
+    <!-- Iconos y librerías externas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  </head>
 
-  <div class="background-image"></div>
-  <section class="menu-header">
-    <div class="header-content">
-      <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo" />
-      <h1>Portal Académico INAM (PA-INAM)</h1>
+  <body>
+    <!-- Imagen de fondo -->
+    <div class="background-image"></div>
+
+    <!-- Encabezado -->
+    <header class="menu-header">
+      <div class="header-content">
+        <img src="./images/Log.INAM.1.jpg" alt="Logo INAM" class="site-logo" />
+        <h1>Portal Académico INAM (PA-INAM)</h1>
+      </div>
+    </header>
+
+    <div class="container-prueba">
+      <p>Ciencia Fraternidad Disciplina</p>
     </div>
-    <div class="search">
-      <input type="search" placeholder="¿Que deseas buscar?" />
-    </div>
-  </section>
 
-  <div class="container-prueba"></div>
-
-  <div class="menu">
-    <div class="header-content">
-      <input type="checkbox" id="check__menu" />
-      <label id="#label__check" for="check__menu">
-        <i class="fa fa-reorder icon__menu"></i>
-      </label>
-      </section>
-
-      <nav>
-        <ul>
-          <li><a href="#">Institución</a></li>
-          <li>
-            <a href="#">Autoridades</a>
-            <ul>
-              <li><a href="#">Director</a></li>
-              <li><a href="#">Sub-Director</a></li>
-              <li><a href="#">Secretaria</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Identidad</a></li>
-          <li><a href="#">Misión y Visión</a></li>
-          <li><a href="./Index.html">Trámites Académicos</a></li>
+    <!-- Barra de navegación -->
+    <nav class="nav__container">
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="#home">Institución</a></li>
+          <li class="nav__item"><a href="#autoridad">Autoridades</a></li>
+          <li class="nav__item"><a href="#identidad">Identidad</a></li>
+          <li class="nav__item"><a href="#mision">Misión y Visión</a></li>
+          <li class="nav__item"><a href="./Index.html">Trámites Académicos</a></li>
         </ul>
-      </nav>
-      <!--login button-->
-      <div class="nav--actions">
-        <div class="nav--login">
-          <img id="login-btn" src="./images/user-line.svg" alt="login" loading="lazy" />
+        <div class="nav__close" id="nav-close">
+          <i class="ri-close-line"></i>
         </div>
       </div>
-    </div>
-  </div>
 
-  <main class="contenido__principal"></main>
-  <div class="carrusel">
-    <!--imagenes de carrusel-->
-    <div class="atras">
-      <img id="atras" src="./images/atras.svg" alt="atras" loading="lazy" />
-    </div>
-    <div class="imagenes">
-      <div id="img">
-        <img class="img" src="./images/Img.7.jpg" alt="Imagen 1" loading="lazy" />
+      <div class="nav__actions">
+        <i class="ri-search-line nav__search" id="search-btn"></i>
+        <i class="ri-user-line nav__login" id="login-btn"></i>
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line"></i>
+        </div>
       </div>
-      <div id="texto" class="texto">
-        <h3>Bienvenido al Portal Académico INAM</h3>
+    </nav>
+
+    <!-- Buscador -->
+    <div class="search" id="search">
+      <form action="" class="search__form">
+        <i class="ri-search-line search__icon"></i>
+        <input type="search" placeholder="¿Qué deseas buscar?" class="search__input" />
+      </form>
+      <i class="ri-close-line search__close" id="search-close"></i>
+    </div>
+
+    <!-- Login -->
+    <div class="login" id="login">
+      <form action="" class="login__form">
+        <h2 class="login__title">Inicia Sesión</h2>
+        <div class="login__group">
+          <div>
+            <label for="email" class="login__label">Correo Electrónico</label>
+            <input type="email" placeholder="Introduce tu Correo Electrónico" id="email" class="login__input" />
+          </div>
+          <div>
+            <label for="password" class="login__label">Contraseña</label>
+            <input type="password" placeholder="Introduce tu Contraseña" id="password" class="login__input" />
+          </div>
+        </div>
+        <p class="login__signup">¿No tienes una cuenta? <a href="#Registro">Regístrate</a></p>
+        <a href="#" class="login__forgot">¿Olvidaste tu Contraseña?</a>
+        <button type="submit" class="login__button">Acceder</button>
+      </form>
+      <i class="ri-close-line login__close" id="login-close"></i>
+    </div>
+
+    <!-- Carrusel de bienvenida -->
+    <div class="carrusel">
+      <div class="atras">
+        <img id="atras" src="./images/atras.svg" alt="atrás" loading="lazy" />
+      </div>
+      <div class="imagenes">
+        <div id="img">
+          <img class="img" src="./images/Img.7.jpg" alt="Imagen 1" loading="lazy" />
+        </div>
+        <div id="texto" class="texto">
+          <h3>Bienvenido al Portal Académico INAM</h3>
+          <p>
+            Aquí encontrarás toda la información académica y administrativa que se genera en el Instituto Nacional de Masatepe.
+            Brindamos un servicio automatizado, integrando las principales tareas educativas.
+          </p>
+        </div>
+      </div>
+      <div class="adelante">
+        <img id="adelante" src="./images/adelante.svg" alt="adelante" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- Sección de Institución -->
+    <section class="home" id="home">
+      <div class="home__Content">
+        <h2>Instituto Nacional de Masatepe INAM-Masatepe</h2>
         <p>
-          Aquí encontrarás toda la información académica y
-          administrativa que se generan dentro del marco educativo
-          del Instituto Nacional de Masatepe, brindando al centro educativo
-          un servicio automatizado, integrando las tareas principales que se llevan acabo en la institucion
+          Fundado en 1989, el INAM-Masatepe se ha destacado por su compromiso con la excelencia académica y la formación integral,
+          promoviendo valores como la disciplina, la responsabilidad y el respeto.
         </p>
       </div>
-    </div>
+    </section>
 
-    <div class="adelante">
-      <img id="adelante" src="./images/adelante.svg" alt="adelante" loading="lazy" />
-    </div>
-  </div>
+    <!-- Sección de Autoridades -->
+    <section class="container__autoridad" id="autoridad">
+      <div class="heading">
+        <div class="autoridad__content">
+          <div class="autoridad__slide box">
+            <div class="content">
+              <h2>Autoridades 2024-2025 INAM-Masatepe</h2>
+            </div>
+          </div>
 
-  <div class="puntos" id="puntos"></div>
-  <script src="./Img.carrusel.js"></script>
+          <!-- Director(a), Subdirector(a), Administración -->
+          <div class="autoridad__slide box">
+            <div class="img"><img src="images/Direct.1.png" alt="" /></div>
+            <div class="content">
+              <h1>Directora</h1>
+              <h3>Lic. Martha Ericelda Téllez</h3>
+              <p>Directora con amplia trayectoria y compromiso con la formación educativa.</p>
+            </div>
+          </div>
 
-  <footer class="inam-footer">
-    <p>INAM-Masatepe</p>
-  </footer>
+          <div class="autoridad__slide box">
+            <div class="img"><img src="images/SubDir.1.png" alt="" /></div>
+            <div class="content">
+              <h1>Sub Director</h1>
+              <h3>Lic. Juan Carlos Pérez</h3>
+              <p>Gestión educativa y compromiso con la calidad.</p>
+            </div>
+          </div>
 
-  </main>
-</body>
+          <div class="autoridad__slide box">
+            <div class="img"><img src="images/Admin.1.png" alt="" /></div>
+            <div class="content">
+              <h1>Administración General</h1>
+              <h3>Lic. Ana María López</h3>
+              <p>Gestión eficiente y transparente de los recursos institucionales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Identidad institucional -->
+    <section class="container__identidad" id="identidad">
+      <div class="heading"><h2>Identidad del Centro Educativo INAM-Masatepe</h2></div>
+      <div class="mission__content">
+        <div class="vision__container">
+          <!-- Bandera -->
+          <div class="vision__slide box">
+            <div class="img"><img src="images/Band.Prin.png" alt="" /></div>
+            <div class="person__review">
+              <h3>Bandera INAM-Masatepe</h3>
+              <p>Rojo: valentía, Amarillo: conocimiento, Azul: paz y unidad.</p>
+            </div>
+          </div>
+
+          <!-- Himno -->
+          <div class="vision__slide box">
+            <div class="img"><img src="images/HimnoIna.jpeg" alt="" /></div>
+            <div class="person__review">
+              <h3>Himno INAM-Masatepe</h3>
+              <p>Inspiración, valores y principios que guían a la comunidad educativa.</p>
+            </div>
+          </div>
+
+          <!-- Emblema -->
+          <div class="vision__slide box">
+            <div class="img"><img src="images/Log.INAM.1.1.png" alt="" /></div>
+            <div class="person__review">
+              <h3>Emblema INAM-Masatepe</h3>
+              <p>Representa los pilares: Ciencia, Fraternidad y Disciplina.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section class="container__mision" id="mision">
+      <div class="heading"><h2>MISIÓN Y VISIÓN</h2></div>
+      <div class="mission__content">
+        <div class="vision__container">
+          <div class="vision__slide box">
+            <div class="person__review">
+              <h2>MISIÓN</h2>
+              <p>Formar jóvenes con conocimientos intelectuales, éticos y morales.</p>
+            </div>
+          </div>
+          <div class="vision__slide box">
+            <div class="person__review">
+              <h2>VISIÓN</h2>
+              <p>Brindar educación de calidad que prepare para la vida y el futuro profesional.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <div class="box__container">
+        <div class="main__Box">
+          <div class="content">
+            <a href="#"><img src="images/Log.INAM.1.1.png" alt="" /></a>
+            <h1 class="logoName">Instituto Nacional de Masatepe</h1>
+          </div>
+          <p>INAM-Masatepe</p>
+        </div>
+        <div class="box">
+          <h3>Otros</h3>
+          <a href="#"><i class="fas fa-arrow-right"></i>Políticas De Privacidad</a>
+          <a href="#"><i class="fas fa-arrow-right"></i>Otros Servicios</a>
+        </div>
+        <div class="box">
+          <h3>Contáctanos</h3>
+          <a href="#"><i class="fas fa-phone"></i>+505 2225-8756</a>
+          <a href="#"><i class="fas fa-envelope"></i>InstitutoDeMasatepeINAM@gmail.com</a>
+        </div>
+      </div>
+      <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="#" class="fab fa-youtube"></a>
+        <a href="#" class="fab fa-instagram"></a>
+      </div>
+      <div class="credit">
+        Sitio Oficial <span>INAM-Masatepe</span> ¡Todos los Derechos Reservados!
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="Login.js"></script>
+    <script src="ScriptVist.js"></script>
+    <script src="./Img.carrusel.js"></script>
+  </body>
 </html>
