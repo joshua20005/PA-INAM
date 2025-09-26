@@ -73,7 +73,7 @@
 //         });
 // });
 
-
+var Url = 'http://127.0.0.1:8000/';
 
 document.addEventListener('DOMContentLoaded', function () {
     // 1. Seleccionar el tbody de la tabla
