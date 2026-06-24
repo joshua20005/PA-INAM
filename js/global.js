@@ -32,7 +32,7 @@ async function apiFetch(endpoint, options = {}) {
   
   if (response.status === 401) {
     localStorage.clear();
-    window.location.href = 'VistaPrinc.html';
+    window.location.href = 'vistaPrinc.html';
     throw new Error('Sesión expirada. Por favor inicie sesión nuevamente.');
   }
   
@@ -54,44 +54,44 @@ function goBack() {
   if (window.history.length > 1) {
     window.history.back();
   } else {
-    window.location.href = 'Index.html';
+    window.location.href = 'index.html';
   }
 }
 
 /* ========== Dropdown de Perfil & Protección de Páginas ========== */
 document.addEventListener('DOMContentLoaded', function () {
-  const currentPage = window.location.pathname.split('/').pop() || 'Index.html';
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const role = localStorage.getItem('user_role');
   
   // 1. Validar que exista una sesión activa
-  if (!role && currentPage !== 'VistaPrinc.html' && currentPage !== 'Ayuda.html') {
-    window.location.href = 'VistaPrinc.html';
+  if (!role && currentPage !== 'vistaPrinc.html' && currentPage !== 'ayuda.html') {
+    window.location.href = 'vistaPrinc.html';
     return;
   }
   
   // 2. Control de acceso por roles
   const pageAccess = {
-    'Registros.html': ['DIRECTOR', 'ADMINISTRACION'],
-    'RegistroEstudiante.html': ['DIRECTOR', 'ADMINISTRACION'],
-    'RegistroTutor.html': ['DIRECTOR', 'ADMINISTRACION'],
-    'RegistroMaestro.html': ['DIRECTOR', 'ADMINISTRACION'],
-    'RegistroGrupo.html': ['DIRECTOR'],
-    'RegistroAsignatura.html': ['DIRECTOR'],
-    'GAcademica.html': ['DIRECTOR', 'DOCENTE', 'ADMINISTRACION'],
-    'RegistroAsistencia.html': ['DIRECTOR', 'DOCENTE'],
-    'RegistroNotas.html': ['DIRECTOR', 'DOCENTE', 'TUTOR', 'ESTUDIANTE'],
-    'RegistroHorario.html': ['DIRECTOR', 'ADMINISTRACION'],
-    'RegistroMatricula.html': ['DIRECTOR', 'ADMINISTRACION', 'TUTOR'],
-    'ConfirmarMatricula.html': ['DIRECTOR', 'ADMINISTRACION'],
-    'Dashboard.html': ['DIRECTOR'],
-    'Actividades.html': ['DIRECTOR', 'DOCENTE'],
-    'ListadoEstudiantes.html': ['DIRECTOR', 'ADMINISTRACION'],
-    'ListadoDocentes.html': ['DIRECTOR', 'ADMINISTRACION'],
+    'registros.html': ['DIRECTOR', 'ADMINISTRACION'],
+    'registroEstudiante.html': ['DIRECTOR', 'ADMINISTRACION'],
+    'registroTutor.html': ['DIRECTOR', 'ADMINISTRACION'],
+    'registroMaestro.html': ['DIRECTOR', 'ADMINISTRACION'],
+    'registroGrupo.html': ['DIRECTOR'],
+    'registroAsignatura.html': ['DIRECTOR'],
+    'gAcademica.html': ['DIRECTOR', 'DOCENTE', 'ADMINISTRACION'],
+    'registroAsistencia.html': ['DIRECTOR', 'DOCENTE'],
+    'registroNotas.html': ['DIRECTOR', 'DOCENTE', 'TUTOR', 'ESTUDIANTE'],
+    'registroHorario.html': ['DIRECTOR', 'ADMINISTRACION'],
+    'registroMatricula.html': ['DIRECTOR', 'ADMINISTRACION', 'TUTOR'],
+    'confirmarMatricula.html': ['DIRECTOR', 'ADMINISTRACION'],
+    'dashboard.html': ['DIRECTOR'],
+    'actividades.html': ['DIRECTOR', 'DOCENTE'],
+    'listadoEstudiantes.html': ['DIRECTOR', 'ADMINISTRACION'],
+    'listadoDocentes.html': ['DIRECTOR', 'ADMINISTRACION'],
   };
   
   if (role && pageAccess[currentPage] && !pageAccess[currentPage].includes(role)) {
     alert('Acceso no autorizado a esta sección');
-    window.location.href = 'Index.html';
+    window.location.href = 'index.html';
     return;
   }
 
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
       link.addEventListener('click', function (e) {
         e.preventDefault();
         localStorage.clear(); // Limpiar variables de sesión
-        window.location.href = 'VistaPrinc.html';
+        window.location.href = 'vistaPrinc.html';
       });
     }
   });
