@@ -193,7 +193,12 @@
         <p>Se ha generado la cuenta de acceso para el docente con éxito:</p>
         <div style="background: var(--gray-100); padding: 16px; border-radius: var(--radius-md); margin: 16px 0; font-family: monospace; border: 1px solid var(--gray-300);">
           <p style="margin-bottom: 8px;"><strong>Usuario (Código):</strong> <span id="cred_username" style="font-weight: bold; color: var(--primary-dark);"></span></p>
-          <p style="margin: 0;"><strong>Contraseña Temporal:</strong> <span id="cred_password" style="font-weight: bold; color: var(--primary-dark);"></span></p>
+          <p style="margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <strong>Contraseña Temporal:</strong> 
+            <span id="cred_password" style="font-weight: bold; color: var(--primary-dark); display: none;"></span>
+            <span id="cred_password_masked" style="font-weight: bold; color: var(--primary-dark);">••••••••••••</span>
+            <button type="button" id="btn_toggle_cred_password" onclick="toggleCredPasswordVisibility()" style="background: none; border: none; cursor: pointer; color: var(--primary); font-size: 0.85rem; padding: 0 4px; display: inline-flex; align-items: center; text-decoration: underline; font-family: var(--font-body);">Mostrar</button>
+          </p>
         </div>
         <p style="color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-bottom: 16px;">⚠️ Entregue esta contraseña temporal al docente. No se volverá a mostrar en pantalla por motivos de seguridad.</p>
         <div style="display: flex; justify-content: flex-end; gap: 12px;">

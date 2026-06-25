@@ -236,7 +236,7 @@ function generateUserAccount(codeStudent) {
   .then(data => {
     // Mostrar modal con las credenciales creadas
     document.getElementById('cred_username').textContent = data.username;
-    document.getElementById('cred_password').textContent = data.password;
+    document.getElementById('cred_password').textContent = data.temp_password;
     document.getElementById('credentialsModal').style.display = 'flex';
     showToast('Cuenta de usuario creada correctamente', 'success');
     
@@ -252,6 +252,29 @@ function generateUserAccount(codeStudent) {
 
 function closeCredentialsModal() {
   document.getElementById('credentialsModal').style.display = 'none';
+  const pwdSpan = document.getElementById('cred_password');
+  const maskedSpan = document.getElementById('cred_password_masked');
+  const btn = document.getElementById('btn_toggle_cred_password');
+  if (pwdSpan && maskedSpan && btn) {
+    pwdSpan.style.display = 'none';
+    maskedSpan.style.display = 'inline';
+    btn.textContent = 'Mostrar';
+  }
+}
+
+function toggleCredPasswordVisibility() {
+  const pwdSpan = document.getElementById('cred_password');
+  const maskedSpan = document.getElementById('cred_password_masked');
+  const btn = document.getElementById('btn_toggle_cred_password');
+  if (pwdSpan.style.display === 'none') {
+    pwdSpan.style.display = 'inline';
+    maskedSpan.style.display = 'none';
+    btn.textContent = 'Ocultar';
+  } else {
+    pwdSpan.style.display = 'none';
+    maskedSpan.style.display = 'inline';
+    btn.textContent = 'Mostrar';
+  }
 }
 
 function copyCredentials() {
