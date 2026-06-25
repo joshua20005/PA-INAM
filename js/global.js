@@ -5,7 +5,7 @@
  * =============================================
  */
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = 'https://proyectoinstituto-back-end-production.up.railway.app';
 
 function getApiUrl(endpoint) {
   if (endpoint.startsWith('http://') || endpoint.startsWith('https://')) {

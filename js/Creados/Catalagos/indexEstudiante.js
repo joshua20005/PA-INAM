@@ -1,7 +1,7 @@
 //  $(function () {
 //      var estudianteService = new EstudianteService();
 
-//      estudianteService.Url = "http://127.0.0.1:8000/apiRegistration/Registration/";
+//      estudianteService.Url = "/apiRegistration/Registration/";
 //      estudianteService.API = "DetalleRegistro";
 //      estudianteService.Method = "GET";
 
@@ -73,7 +73,7 @@
 //         });
 // });
 
-var Url = 'http://127.0.0.1:8000/';
+var Url = '/';
 
 document.addEventListener('DOMContentLoaded', function () {
     // 1. Seleccionar el tbody de la tabla
@@ -228,7 +228,7 @@ function buscarEstudiante() {
         return;
     }
 
-    apiFetch(`http://127.0.0.1:8000/apiStudent/Student/SpecificStudent/?code_student=${encodeURIComponent(code)}`)
+    apiFetch(`/apiStudent/Student/SpecificStudent/?code_student=${encodeURIComponent(code)}`)
         .then(response => response.json().then(data => ({ status: response.status, body: data })))
         .then(({ status, body }) => {
             if (status === 200) {

@@ -3,12 +3,11 @@
  * Connected to Django SQL Server backend APIs with defensive programming & shift logic
  */
 
-// Dynamic base URL resolver to prevent localhost vs 127.0.0.1 CORS mismatches
 const getBackendUrl = () => {
   if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
     return `http://${window.location.hostname}:8000`;
   }
-  return "http://127.0.0.1:8000";
+  return API_BASE_URL;
 };
 
 const BASE_URL = getBackendUrl();

@@ -67,7 +67,7 @@ function editargrupo(e) {
     shift_group: document.getElementById("turno").value
   };
 
-  apiFetch(`http://127.0.0.1:8000/apiGroup/Group/${id}/UpdateGroup/`, {
+  apiFetch(`/apiGroup/Group/${id}/UpdateGroup/`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(grupo)
@@ -94,7 +94,7 @@ document.getElementById('code_group').addEventListener('keydown', function (e) {
       return;
     }
 
-    apiFetch(`http://127.0.0.1:8000/apiGroup/Group/SpecificGroup/?code_group=${encodeURIComponent(code)}`)
+    apiFetch(`/apiGroup/Group/SpecificGroup/?code_group=${encodeURIComponent(code)}`)
       .then(res => res.json().then(data => ({ status: res.status, body: data })))
       .then(({ status, body }) => {
         if (status === 200) {

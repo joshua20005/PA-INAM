@@ -71,7 +71,7 @@ function buscarTutor() {
     return;
   }
 
-  apiFetch(`http://127.0.0.1:8000/apiMentor/Mentor/SpecificMentor/?code_tutor=${encodeURIComponent(code)}`)
+  apiFetch(`/apiMentor/Mentor/SpecificMentor/?code_tutor=${encodeURIComponent(code)}`)
     .then(res => res.json().then(data => ({ status: res.status, data })))
     .then(({ status, data }) => {
       if (status === 200) {

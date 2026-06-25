@@ -99,7 +99,7 @@ document.getElementById("code_student").addEventListener("keydown", function (ev
       return;
     }
 
-    apiFetch(`http://127.0.0.1:8000/apiStudent/Student/SpecificStudent/?code_student=${encodeURIComponent(code)}`)
+    apiFetch(`/apiStudent/Student/SpecificStudent/?code_student=${encodeURIComponent(code)}`)
       .then(response => {
         if (!response.ok) throw new Error("Estudiante no encontrado en la base de datos");
         return response.json();
@@ -138,7 +138,7 @@ document.getElementById("code_tutor").addEventListener("keydown", function (even
       return;
     }
 
-    apiFetch(`http://127.0.0.1:8000/apiMentor/Mentor/SpecificMentor/?code_tutor=${encodeURIComponent(code)}`)
+    apiFetch(`/apiMentor/Mentor/SpecificMentor/?code_tutor=${encodeURIComponent(code)}`)
       .then(response => {
         if (!response.ok) throw new Error("Tutor no encontrado en la base de datos");
         return response.json();
@@ -252,7 +252,7 @@ function configureEnrollmentView() {
   }
 
   // 2. Check student registration
-  apiFetch(`http://127.0.0.1:8000/apiRegistration/Registration/CheckStudentEnrollment/?code_student=${encodeURIComponent(studentCode)}`)
+  apiFetch(`/apiRegistration/Registration/CheckStudentEnrollment/?code_student=${encodeURIComponent(studentCode)}`)
     .then(res => {
       if (!res.ok) throw new Error('Error al verificar estado de matrícula');
       return res.json();
@@ -314,7 +314,7 @@ function configureEnrollmentView() {
               // Also fetch tutor details if we have tutor_id
               const tutorId = localStorage.getItem('tutor_id');
               if (tutorId && tutorId !== 'null') {
-                apiFetch(`http://127.0.0.1:8000/apiMentor/Mentor/${tutorId}/`)
+                apiFetch(`/apiMentor/Mentor/${tutorId}/`)
                   .then(res => res.json())
                   .then(mentorData => {
                     if (tutorInput) {

@@ -13,7 +13,7 @@ document.getElementById("Nmaestro").addEventListener("keydown", function (event)
       return;
     }
 
-    apiFetch(`http://127.0.0.1:8000/apiTeacher/Teacher/SpecificTeacher/?code_teacher=${encodeURIComponent(code)}`)
+    apiFetch(`/apiTeacher/Teacher/SpecificTeacher/?code_teacher=${encodeURIComponent(code)}`)
       .then(response => {
         if (!response.ok) throw new Error("Maestro no encontrado");
         return response.json();
