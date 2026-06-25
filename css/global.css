@@ -928,8 +928,8 @@ select.form__control {
   color: var(--slate-800);
 }
 
-/* ================== TAB STYLING (For List pages) ================== */
-.tabs-nav {
+.tabs-nav,
+.tabs-header {
   display: flex;
   gap: 8px;
   border-bottom: 2px solid var(--slate-200);
