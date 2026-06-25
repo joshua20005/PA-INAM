@@ -63,6 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const role = localStorage.getItem('user_role');
   
+  // 0. Mostrar cualquier alerta pendiente guardada en localStorage
+  const pendingToast = localStorage.getItem('pending_toast');
+  if (pendingToast) {
+    try {
+      const toastData = JSON.parse(pendingToast);
+      showToast(toastData.message, toastData.type);
+    } catch (e) {}
+    localStorage.removeItem('pending_toast');
+  }
+  
   // 1. Validar que exista una sesión activa
   if (!role && currentPage !== 'vistaPrinc.html' && currentPage !== 'ayuda.html') {
     window.location.href = 'vistaPrinc.html';
@@ -90,7 +100,10 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   
   if (role && pageAccess[currentPage] && !pageAccess[currentPage].includes(role)) {
-    alert('Acceso no autorizado a esta sección');
+    localStorage.setItem('pending_toast', JSON.stringify({
+      message: 'Acceso no autorizado a esta sección',
+      type: 'error'
+    }));
     window.location.href = 'index.html';
     return;
   }
