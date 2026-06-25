@@ -219,6 +219,13 @@ body {
   right: 2rem;
 }
 
+@media screen and (min-width: 1024px) {
+  .nav__close,
+  .nav__toggle {
+    display: none !important;
+  }
+}
+
 /* ==================== SEARCH BAR ==================== */
 .search {
   position: fixed;
@@ -437,11 +444,12 @@ body {
 
 /* ==================== HERO SECTION ==================== */
 .home {
-  min-height: 85vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 4rem 2rem;
   position: relative;
+  background: linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)), url(../images/VistaPrin.png) no-repeat center center/cover;
 }
 
 .home .home__Content {
@@ -532,7 +540,7 @@ section {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   justify-content: center;
 }
@@ -769,5 +777,10 @@ section {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  .autoridad__slide,
+  .vision__slide {
+    padding: 20px 16px;
   }
 }

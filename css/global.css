@@ -362,6 +362,8 @@ nav,
   box-shadow: var(--glass-shadow);
   transition: all var(--transition-normal);
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
 }
 
 .layout__section:hover {
@@ -974,3 +976,10 @@ select.form__control {
   color: #B45309;
   border-color: rgba(245, 158, 11, 0.2);
 }
+
+/* ==================== RESPONSIVE CANVAS ==================== */
+canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
