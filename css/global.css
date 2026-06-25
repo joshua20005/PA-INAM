@@ -546,6 +546,31 @@ select.form__control {
   transform: scale(0.97);
 }
 
+.form__button--green,
+.form__button--purple,
+.form__button--red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  color: var(--white) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-heading);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.2px;
+  text-decoration: none;
+}
+
+.form__button--green:active,
+.form__button--purple:active,
+.form__button--red:active {
+  transform: scale(0.97);
+}
+
 .form__button--green {
   background: var(--gradient-success);
   box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
@@ -575,6 +600,17 @@ select.form__control {
   box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35);
   transform: translateY(-2px);
 }
+
+/* ============= STEP NAVIGATION CONTAINER ============= */
+.step-navigation {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--slate-200);
+}
+
 
 /* ========== FORM IMAGE & DOC ITEMS ========== */
 .form__group-img {
@@ -933,14 +969,17 @@ select.form__control {
   border-radius: 20px;
 }
 
-.tab-pane {
+.tab-pane,
+.step-content {
   display: none;
 }
 
-.tab-pane.active {
+.tab-pane.active,
+.step-content.active {
   display: block;
   animation: fadeIn 0.25s ease;
 }
+
 
 @keyframes fadeIn {
   from { opacity: 0; }
