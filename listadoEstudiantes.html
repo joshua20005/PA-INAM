@@ -180,6 +180,7 @@
       <span class="modal__close" onclick="closeEditModal()">&times;</span>
       <h2>Editar Estudiante</h2>
       <form id="edit-student-form" novalidate>
+        <input type="hidden" id="modal_student_id">
         <div class="form__group">
           <label class="form__label" for="modal_code_student">Código de Estudiante</label>
           <input type="text" class="form__control" id="modal_code_student" readonly style="background-color: var(--gray-200); cursor: not-allowed; font-weight: bold;">

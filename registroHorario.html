@@ -34,12 +34,13 @@
   <div class="separador"></div>
 
   <div class="layout__conteiner">
-    <div class="layout" style="flex-direction: column; align-items: center; gap: 20px;">
-      <div class="layout__image" style="margin-bottom: 10px;">
-        <img src="./images/Horario.png" alt="Imagen" style="width: 120px; height: auto;">
+    <div class="layout">
+      <div class="layout__image">
+        <img src="./images/Horario.png" alt="Imagen" style="position: sticky; top: 20px;">
       </div>
 
-      <section class="layout__section" id="form-horario-section" style="width: 100%; max-width: 950px; margin: 0;">
+      <div class="layout__content" style="flex: 1; max-width: 950px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+        <section class="layout__section" id="form-horario-section" style="width: 100%; max-width: 100%; margin: 0;">
         <div class="section">
           <div class="section__title">Detalles de Horario</div>
           <form class="form" id="form-validation" novalidate>
@@ -97,7 +98,7 @@
       </section>
 
       <!-- Section for Automatic Rotational Schedule Generator -->
-      <section class="layout__section" id="generator-horario-section" style="width: 100%; max-width: 950px; margin: 0;">
+      <section class="layout__section" id="generator-horario-section" style="width: 100%; max-width: 100%; margin: 0;">
         <div class="section">
           <div class="section__title">⚙️ Generador Rotativo de Horarios</div>
           <div class="form" style="display: flex; flex-direction: column; gap: 15px;">
@@ -120,7 +121,7 @@
         </div>
       </section>
 
-      <section class="layout__section" style="width: 100%; max-width: 950px; margin: 0;">
+      <section class="layout__section" style="width: 100%; max-width: 100%; margin: 0;">
         <div class="section">
           <div class="section__title">Horario de Clases</div>
           <div class="table-responsive">
@@ -147,7 +148,7 @@
       </section>
 
       <!-- General Overview Section Redesigned like Matricula -->
-      <section class="layout__section" style="width: 100%; max-width: 950px; margin: 0;">
+      <section class="layout__section" style="width: 100%; max-width: 100%; margin: 0;">
         <div class="section">
           <div class="section__title" style="justify-content: space-between;">
             <span style="display: flex; align-items: center; gap: 8px;">📅 Vista General de Horarios</span>
@@ -176,6 +177,7 @@
           </div>
         </div>
       </section>
+      </div>
 
     </div>
   </div>

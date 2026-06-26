@@ -128,7 +128,7 @@ function loadStudentsByGroup(groupId) {
         }
 
         solvencyBtn.addEventListener('click', () => {
-          toggleSolvency(student.student_code, student.is_solvent);
+          toggleSolvency(student.student_id, student.is_solvent);
         });
         cellSolvency.appendChild(solvencyBtn);
         row.appendChild(cellSolvency);
@@ -190,14 +190,14 @@ function loadStudentsByGroup(groupId) {
 }
 
 // Alternar estado de solvencia (pago)
-function toggleSolvency(codeStudent, currentIsSolvent) {
+function toggleSolvency(studentId, currentIsSolvent) {
   const newSolvency = !currentIsSolvent;
   
   apiFetch('/apiStudent/Student/SavePaymentStatus/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      code_student: codeStudent,
+      student_id: studentId,
       is_solvent: newSolvency
     })
   })
@@ -294,6 +294,7 @@ function copyCredentials() {
 
 // Abrir el modal de edición de estudiante
 function openEditModal(student) {
+  document.getElementById('modal_student_id').value = student.student_id;
   document.getElementById('modal_code_student').value = student.student_code;
   document.getElementById('modal_name_student').value = student.student_firstname;
   document.getElementById('modal_surname_student').value = student.student_lastname;
@@ -325,6 +326,7 @@ function handleEditSubmit(event) {
   }
 
   const payload = {
+    student_id: parseInt(document.getElementById('modal_student_id').value),
     code_student: document.getElementById('modal_code_student').value.trim(),
     name_student: document.getElementById('modal_name_student').value.trim(),
     surname_student: document.getElementById('modal_surname_student').value.trim(),
