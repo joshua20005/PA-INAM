@@ -1038,7 +1038,8 @@ canvas {
 
   /* Reclaim Layout Container Padding */
   .layout__container,
-  .layout__conteiner {
+  .layout__conteiner,
+  .container {
     padding: 20px 15px;
   }
 
@@ -1105,7 +1106,8 @@ canvas {
 
   /* Compact padding for card sections on mobile */
   .layout__container,
-  .layout__conteiner {
+  .layout__conteiner,
+  .container {
     padding: 12px 8px;
   }
   
