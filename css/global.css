@@ -1038,7 +1038,8 @@ canvas {
 
   /* Prevent grid items from stretching the viewport width */
   .layout__section,
-  .steps-wrapper {
+  .steps-wrapper,
+  .layout__content {
     min-width: 0 !important;
   }
 
