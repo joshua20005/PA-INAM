@@ -1036,6 +1036,12 @@ canvas {
     padding: 10px 0;
   }
 
+  /* Prevent grid items from stretching the viewport width */
+  .layout__section,
+  .steps-wrapper {
+    min-width: 0 !important;
+  }
+
   /* Reclaim Layout Container Padding */
   .layout__container,
   .layout__conteiner,
