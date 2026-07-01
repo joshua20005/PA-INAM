@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://proyectoinstituto-back-end-production.up.railway.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://proyectoinstituto-back-end-production.up.railway.app; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://cdnjs.cloudflare.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://proyectoinstituto-back-end-production.up.railway.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://proyectoinstituto-back-end-production.up.railway.app; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com;">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menu principal</title>
@@ -10,10 +10,13 @@
   <link rel="stylesheet" href="css/global.css?v=1.0.7" />
   <link rel="stylesheet" href="css/styleVista.css?v=1.0.1" />
 
-  <!-- Iconos y librerías externas -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <!-- Iconos y librerías externas (versiones fijadas + Subresource Integrity) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    integrity="sha384-2+8OcleUOxnP/2cYXK9FBoMe12ojS0iPrrJy9Um4ICFk2AXl8iODUaIoUKI6TmGj" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper@14.0.1/swiper-bundle.min.css"
+    integrity="sha384-ZpTu6lu01tFQs79Cy93VlIG+e5ecrVxQJ7y1ls+M+JAXtu6EJEva5oZD9N+D0DsM" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -334,7 +337,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/swiper@14.0.1/swiper-bundle.min.js"
+    integrity="sha384-89/1IydW0I7pCr9YFOrcrOCXJ0kW16DWtAF+a7BCXKovVqBaR090u7jHfvIoIxkK" crossorigin="anonymous"></script>
   <script src="js/global.js"></script>
   <script src="js/login.js"></script>
   <script src="js/scriptVist.js"></script>
