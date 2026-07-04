@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'registroMatricula.html': ['DIRECTOR', 'ADMINISTRACION', 'TUTOR'],
     'confirmarMatricula.html': ['DIRECTOR', 'ADMINISTRACION'],
     'dashboard.html': ['DIRECTOR'],
+    'analisisIA.html': ['DIRECTOR'],
     'actividades.html': ['DIRECTOR', 'DOCENTE'],
     'listadoEstudiantes.html': ['DIRECTOR', 'ADMINISTRACION'],
     'listadoDocentes.html': ['DIRECTOR', 'ADMINISTRACION'],

@@ -52,6 +52,10 @@
               <img src="./images/dashboard.png" class="section__item-icon" alt="Dashboard">
               Dashboard
             </a>
+            <a href="analisisIA.html" class="section__item" id="card-analisis-ia" style="display: none;">
+              <img src="./images/dashboard.png" class="section__item-icon" alt="Análisis IA">
+              Análisis IA
+            </a>
             <a href="registroMatricula.html" class="section__item" id="card-matricula-online" style="display: none;">
               <img src="./images/Matricula.png" class="section__item-icon" alt="Matrícula en Línea">
               Matrícula en Línea
@@ -76,6 +80,7 @@
       document.getElementById('card-gacademica').style.display = 'none';
       document.getElementById('card-actividades').style.display = 'none';
       document.getElementById('card-dashboard').style.display = 'none';
+      document.getElementById('card-analisis-ia').style.display = 'none';
       document.getElementById('card-matricula-online').style.display = 'none';
       document.getElementById('card-boletin').style.display = 'none';
       
@@ -84,6 +89,7 @@
         document.getElementById('card-gacademica').style.display = 'flex';
         document.getElementById('card-actividades').style.display = 'flex';
         document.getElementById('card-dashboard').style.display = 'flex';
+        document.getElementById('card-analisis-ia').style.display = 'flex';
       } else if (role === 'DOCENTE') {
         document.getElementById('card-gacademica').style.display = 'flex';
         document.getElementById('card-actividades').style.display = 'flex';
