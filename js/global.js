@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'confirmarMatricula.html': ['DIRECTOR', 'ADMINISTRACION'],
     'dashboard.html': ['DIRECTOR'],
     'analisisIA.html': ['DIRECTOR'],
+    'portalEstudiante.html': ['ESTUDIANTE'],
     'actividades.html': ['DIRECTOR', 'DOCENTE'],
     'listadoEstudiantes.html': ['DIRECTOR', 'ADMINISTRACION'],
     'listadoDocentes.html': ['DIRECTOR', 'ADMINISTRACION'],

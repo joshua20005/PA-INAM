@@ -60,6 +60,10 @@
               <img src="./images/Matricula.png" class="section__item-icon" alt="Matrícula en Línea">
               Matrícula en Línea
             </a>
+            <a href="portalEstudiante.html" class="section__item" id="card-portal-estudiante" style="display: none;">
+              <img src="./images/user3.png" class="section__item-icon" alt="Mi Portal">
+              Mi Portal
+            </a>
             <a href="registroNotas.html" class="section__item" id="card-boletin" style="display: none;">
               <img src="./images/Notas.png" class="section__item-icon" alt="Boletín de Calificaciones">
               Boletín de Calificaciones
@@ -83,6 +87,7 @@
       document.getElementById('card-analisis-ia').style.display = 'none';
       document.getElementById('card-matricula-online').style.display = 'none';
       document.getElementById('card-boletin').style.display = 'none';
+      document.getElementById('card-portal-estudiante').style.display = 'none';
       
       if (role === 'DIRECTOR') {
         document.getElementById('card-registros').style.display = 'flex';
@@ -100,6 +105,7 @@
         document.getElementById('card-matricula-online').style.display = 'flex';
         document.getElementById('card-boletin').style.display = 'flex';
       } else if (role === 'ESTUDIANTE') {
+        document.getElementById('card-portal-estudiante').style.display = 'flex';
         document.getElementById('card-boletin').style.display = 'flex';
       }
     });
