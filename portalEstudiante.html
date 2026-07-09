@@ -5,15 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Portal — PA-INAM</title>
-  <link rel="stylesheet" href="css/global.css?v=1.0.7">
+  <link rel="stylesheet" href="css/global.css?v=1.0.8">
   <style>
     :root {
-      --pe-primary: #5D3CA6;
-      --pe-primary-deep: #3d2470;
-      --pe-gold: #f3be10;
-      --pe-ink: #1f1b2e;
-      --pe-muted: #6b6580;
-      --pe-card: rgba(255, 255, 255, 0.78);
+      /* Hereda la marca global (Índigo & Ámbar) para mantener coherencia */
+      --pe-primary: var(--primary, #4F46E5);
+      --pe-primary-deep: var(--primary-dark, #3730A3);
+      --pe-gold: var(--accent, #F59E0B);
+      --pe-ink: var(--slate-800, #1E293B);
+      --pe-muted: var(--slate-500, #64748B);
+      --pe-card: var(--glass-bg, rgba(255, 255, 255, 0.78));
       --pe-excellent: #16a34a;
       --pe-good: #0ea5e9;
       --pe-ok: #14b8a6;
@@ -21,15 +22,15 @@
       --pe-risk: #ef4444;
     }
 
-    body { background: #f4f2f9; }
+    body { background: radial-gradient(135deg, #F8FAFC 0%, #EEF2F6 100%); }
 
     /* ---------- Animated backdrop ---------- */
     .pe-bg {
       position: fixed; inset: 0; z-index: -1; overflow: hidden;
       background:
-        radial-gradient(1100px 620px at 12% -8%, rgba(93,60,166,0.22), transparent 60%),
-        radial-gradient(900px 520px at 108% 8%, rgba(243,190,16,0.18), transparent 55%),
-        radial-gradient(760px 560px at 50% 118%, rgba(14,165,233,0.14), transparent 60%);
+        radial-gradient(1100px 620px at 12% -8%, rgba(79,70,229,0.20), transparent 60%),
+        radial-gradient(900px 520px at 108% 8%, rgba(245,158,11,0.16), transparent 55%),
+        radial-gradient(760px 560px at 50% 118%, rgba(99,102,241,0.14), transparent 60%);
     }
 
     .pe-wrap { max-width: 1080px; margin: 0 auto; padding: 8px 18px 60px; }
@@ -39,8 +40,8 @@
       position: relative; overflow: hidden;
       border-radius: 26px; padding: 34px 32px;
       color: #fff;
-      background: linear-gradient(135deg, #6b46c9 0%, #5D3CA6 42%, #3d2470 100%);
-      box-shadow: 0 22px 48px -18px rgba(61,36,112,0.65);
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 42%, #3730A3 100%);
+      box-shadow: 0 22px 48px -18px rgba(55,48,163,0.6);
       animation: pe-rise 0.7s cubic-bezier(0.22,1,0.36,1) both;
     }
     .pe-hero__blob {
@@ -86,8 +87,8 @@
       display: grid; grid-template-columns: 300px 1fr; gap: 20px; margin-top: 22px;
     }
     .pe-card {
-      background: var(--pe-card); border: 1px solid rgba(93,60,166,0.10);
-      border-radius: 22px; box-shadow: 0 14px 34px -22px rgba(61,36,112,0.5);
+      background: var(--pe-card); border: 1px solid rgba(79,70,229,0.10);
+      border-radius: 22px; box-shadow: 0 14px 34px -22px rgba(55,48,163,0.5);
       backdrop-filter: blur(10px);
     }
     .pe-ringcard {
@@ -119,7 +120,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: pe-rise 0.55s cubic-bezier(0.22,1,0.36,1) both;
     }
-    .pe-subject:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -20px rgba(61,36,112,0.55); }
+    .pe-subject:hover { transform: translateY(-4px); box-shadow: 0 20px 38px -20px rgba(55,48,163,0.55); }
     .pe-subject__body { min-width: 0; flex: 1; }
     .pe-subject__name {
       font-weight: 700; color: var(--pe-ink); font-size: 0.98rem; margin-bottom: 6px;
@@ -131,14 +132,14 @@
     }
     .pe-dots { display: flex; gap: 6px; margin-top: 10px; }
     .pe-dot {
-      width: 26px; height: 6px; border-radius: 999px; background: #e5e1ef;
+      width: 26px; height: 6px; border-radius: 999px; background: var(--slate-200, #E2E8F0);
     }
     .pe-dot--on { background: currentColor; }
 
     /* ---------- Ring (SVG) ---------- */
     .pe-ring { position: relative; width: 132px; height: 132px; }
     .pe-ring svg { transform: rotate(-90deg); }
-    .pe-ring__track { fill: none; stroke: #e9e5f3; }
+    .pe-ring__track { fill: none; stroke: var(--slate-200, #E2E8F0); }
     .pe-ring__fill {
       fill: none; stroke-linecap: round;
       transition: stroke-dashoffset 1.1s cubic-bezier(0.22,1,0.36,1);
@@ -153,7 +154,7 @@
     /* ---------- CTA ---------- */
     .pe-cta {
       display: inline-flex; align-items: center; gap: 10px; margin: 28px auto 0; text-decoration: none;
-      background: linear-gradient(135deg, #5D3CA6, #3d2470); color: #fff;
+      background: linear-gradient(135deg, #4F46E5, #3730A3); color: #fff;
       padding: 14px 26px; border-radius: 14px; font-weight: 700; font-size: 0.95rem;
       box-shadow: 0 16px 30px -14px rgba(61,36,112,0.7);
       transition: transform 0.18s ease, box-shadow 0.18s ease;
