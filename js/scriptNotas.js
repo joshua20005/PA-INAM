@@ -685,6 +685,76 @@ function loadStudentBulletin() {
 }
 
 // Render bulletin scorecard table
+/* ===== Escala cualitativa (MINED): AA / AS / AF / AI =====
+   Algunas asignaturas se evalúan por categoría de logro en lugar de una nota
+   numérica. Se promedian por su equivalencia 0-100 y el resultado se muestra
+   otra vez como categoría, para no mezclar escalas en el boletín. */
+const ESCALA_CUALITATIVA = ['AA', 'AS', 'AF', 'AI'];
+const EQUIV_CUALITATIVA = { AA: 95, AS: 82.5, AF: 67.5, AI: 45 };
+
+function cualitativaANumero(v) {
+  return EQUIV_CUALITATIVA[String(v || '').trim().toUpperCase()] ?? null;
+}
+
+function numeroACualitativa(n) {
+  if (n === null || n === undefined || isNaN(n)) return '';
+  if (n >= 90) return 'AA';
+  if (n >= 76) return 'AS';
+  if (n >= 60) return 'AF';
+  return 'AI';
+}
+
+/**
+ * Descarga en Excel las notas del grupo seleccionado (todas las asignaturas).
+ * Se usa un blob porque la petición necesita el token en la cabecera y no se
+ * puede abrir la URL directamente.
+ */
+function exportarNotas() {
+  const groupId = document.getElementById('notes_group').value;
+  if (!groupId) {
+    showToast('Seleccione un grupo primero', 'warning');
+    return;
+  }
+
+  showToast('Generando archivo Excel…', 'info');
+  apiFetch(`/apiAnalitica/Analitica/ExportarNotas/?id_group=${encodeURIComponent(groupId)}`)
+    .then(res => {
+      if (!res.ok) throw new Error('No se pudo generar el archivo');
+      const cd = res.headers.get('Content-Disposition') || '';
+      const m = cd.match(/filename="?([^";]+)"?/);
+      return res.blob().then(blob => ({ blob, nombre: m ? m[1] : 'Notas.xlsx' }));
+    })
+    .then(({ blob, nombre }) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = nombre;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast('Archivo descargado', 'success');
+    })
+    .catch(err => showToast(err.message, 'error'));
+}
+
+/** Campo de captura de un parcial: <select> si es cualitativa, si no <input>. */
+function campoParcial(g, idx, num, valor, habilitado) {
+  const id = `p${num}_${idx}`;
+  const dis = habilitado ? '' : 'disabled';
+  if (g.es_cualitativa) {
+    const opciones = ['<option value="">—</option>'].concat(
+      ESCALA_CUALITATIVA.map(c => {
+        const sel = String(valor || '').trim().toUpperCase() === c ? 'selected' : '';
+        return `<option value="${c}" ${sel}>${c}</option>`;
+      })).join('');
+    return `<select class="form__control" id="${id}" onchange="recalcBulletinRow(${idx})"
+      style="width: 72px; padding: 4px 6px; font-size: 0.85rem;" ${dis}>${opciones}</select>`;
+  }
+  return `<input type="text" class="form__input" id="${id}" value="${escapeHtml(valor || '')}"
+    oninput="recalcBulletinRow(${idx})" style="width: 50px;" ${dis}>`;
+}
+
 function renderBulletinTable(grades) {
   const container = document.getElementById('bulletin-table-container');
   const saveArea = document.getElementById('bulletin-save-area');
@@ -727,14 +797,12 @@ function renderBulletinTable(grades) {
         
         <!-- I -->
         <td class="form__table-campo">
-          <input type="text" class="form__input" id="p1_${idx}" value="${g.first_partial}" 
-            oninput="recalcBulletinRow(${idx})" style="width: 50px;" ${isReadOnly ? 'disabled' : (g.id_subject_sem1 ? '' : 'disabled')}>
+          ${campoParcial(g, idx, 1, g.first_partial, !isReadOnly && !!g.id_subject_sem1)}
         </td>
-        
+
         <!-- II -->
         <td class="form__table-campo">
-          <input type="text" class="form__input" id="p2_${idx}" value="${g.second_partial}" 
-            oninput="recalcBulletinRow(${idx})" style="width: 50px;" ${isReadOnly ? 'disabled' : (g.id_subject_sem1 ? '' : 'disabled')}>
+          ${campoParcial(g, idx, 2, g.second_partial, !isReadOnly && !!g.id_subject_sem1)}
         </td>
         
         <!-- IS (Readonly/calculated) -->
@@ -744,14 +812,12 @@ function renderBulletinTable(grades) {
         
         <!-- III -->
         <td class="form__table-campo">
-          <input type="text" class="form__input" id="p3_${idx}" value="${g.third_partial}" 
-            oninput="recalcBulletinRow(${idx})" style="width: 50px;" ${isReadOnly ? 'disabled' : (g.id_subject_sem2 ? '' : 'disabled')}>
+          ${campoParcial(g, idx, 3, g.third_partial, !isReadOnly && !!g.id_subject_sem2)}
         </td>
-        
+
         <!-- IV -->
         <td class="form__table-campo">
-          <input type="text" class="form__input" id="p4_${idx}" value="${g.quarter_partial}" 
-            oninput="recalcBulletinRow(${idx})" style="width: 50px;" ${isReadOnly ? 'disabled' : (g.id_subject_sem2 ? '' : 'disabled')}>
+          ${campoParcial(g, idx, 4, g.quarter_partial, !isReadOnly && !!g.id_subject_sem2)}
         </td>
         
         <!-- IIS (Readonly/calculated) -->
@@ -773,6 +839,12 @@ function renderBulletinTable(grades) {
 
 // Live calculation of row averages in the UI
 function recalcBulletinRow(rowIdx) {
+  // En asignaturas cualitativas los parciales son categorías (AA/AS/AF/AI):
+  // se promedian por su equivalencia numérica y el resultado se muestra otra
+  // vez como categoría.
+  const esCualitativa = !!(currentBulletinGrades[rowIdx]
+    && currentBulletinGrades[rowIdx].es_cualitativa);
+
   const getVal = (id) => {
     const el = document.getElementById(id);
     if (!el) return '';
@@ -780,11 +852,13 @@ function recalcBulletinRow(rowIdx) {
   };
 
   const toFloat = (val) => {
+    if (esCualitativa) return cualitativaANumero(val);
     const num = parseFloat(val);
     return isNaN(num) ? null : num;
   };
 
   const format = (val) => {
+    if (esCualitativa) return numeroACualitativa(val);
     return val % 1 !== 0 ? val.toFixed(1) : String(val);
   };
 
@@ -804,7 +878,9 @@ function recalcBulletinRow(rowIdx) {
     const el = document.getElementById(ids[idx]);
     if (!el) return;
 
-    if (p !== '') {
+    // El rango 0-100 solo aplica a notas numéricas; las cualitativas se eligen
+    // de una lista cerrada, así que no pueden estar fuera de rango.
+    if (!esCualitativa && p !== '') {
       const num = parseFloat(p);
       if (isNaN(num) || num < 0 || num > 100) {
         el.style.border = '2px solid var(--danger)';

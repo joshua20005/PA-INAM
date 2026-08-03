@@ -20,15 +20,119 @@ document.addEventListener('DOMContentLoaded', () => {
   // Cargar datos iniciales
   loadPendingRegistrations();
   if (role === 'DIRECTOR') {
-    cargarConfiguracionMatricula();
+    cargarVentanas();
   }
 
-  // Configurar botón de guardar configuración
-  const btnSaveSettings = document.getElementById('btn-save-settings');
-  if (btnSaveSettings) {
-    btnSaveSettings.addEventListener('click', guardarConfiguracionMatricula);
-  }
+  // Botones de guardado por ventana (Reingreso / Matrícula)
+  document.querySelectorAll('[data-ventana]').forEach(btn => {
+    btn.addEventListener('click', () => guardarVentana(btn.dataset.ventana));
+  });
+
+  // Descarga del reporte de continuidad
+  const btnCont = document.getElementById('btn-export-continuidad');
+  if (btnCont) btnCont.addEventListener('click', exportarContinuidad);
 });
+
+/* =========================================================================
+   Ventanas de matrícula en línea (Reingreso y Matrícula)
+   ========================================================================= */
+
+// Prefijo de los ids del formulario de cada ventana.
+const PREFIJO_VENTANA = { reingreso: 'rein', matricula: 'mat' };
+
+function _campos(ventana) {
+  const p = PREFIJO_VENTANA[ventana];
+  return {
+    enabled: document.getElementById(`${p}_enabled`),
+    period: document.getElementById(`${p}_period`),
+    start: document.getElementById(`${p}_start`),
+    end: document.getElementById(`${p}_end`),
+    estado: document.getElementById(`estado-${ventana}`),
+  };
+}
+
+function _pintarEstado(ventana, datos) {
+  const c = _campos(ventana);
+  if (!c.enabled) return;
+
+  c.enabled.value = datos.habilitada ? 'true' : 'false';
+  c.period.value = datos.periodo || '';
+  c.start.value = datos.fecha_inicio || '';
+  c.end.value = datos.fecha_fin || '';
+
+  if (c.estado) {
+    c.estado.textContent = datos.abierta ? 'Abierta ahora' : (datos.motivo || 'Cerrada');
+    c.estado.className = 'status-pill ' +
+      (datos.abierta ? 'status-pill--success' : 'status-pill--neutral');
+  }
+}
+
+function cargarVentanas() {
+  apiFetch('/apiUserCreate/UsuarioCreate/GetEnrollmentWindow/')
+    .then(res => {
+      if (!res.ok) throw new Error('No se pudo cargar la configuración');
+      return res.json();
+    })
+    .then(data => {
+      const v = data.ventanas || {};
+      if (v.reingreso) _pintarEstado('reingreso', v.reingreso);
+      if (v.matricula) _pintarEstado('matricula', v.matricula);
+    })
+    .catch(err => showToast(err.message, 'error'));
+}
+
+function guardarVentana(ventana) {
+  const c = _campos(ventana);
+  if (!c.enabled) return;
+
+  if (c.start.value && c.end.value && c.end.value < c.start.value) {
+    showToast('La fecha de fin no puede ser anterior a la de inicio', 'warning');
+    return;
+  }
+
+  apiFetch('/apiUserCreate/UsuarioCreate/ToggleEnrollmentWindow/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ventana: ventana,
+      habilitada: c.enabled.value === 'true',
+      periodo: c.period.value.trim(),
+      fecha_inicio: c.start.value || '',
+      fecha_fin: c.end.value || '',
+    }),
+  })
+    .then(res => res.json().then(body => ({ ok: res.ok, body })))
+    .then(({ ok, body }) => {
+      if (!ok) throw new Error(body.error || 'No se pudo guardar la configuración');
+      if (body.estado) _pintarEstado(ventana, body.estado);
+      showToast(body.message || 'Configuración guardada', 'success');
+    })
+    .catch(err => showToast(err.message, 'error'));
+}
+
+/** Descarga el Excel de continuidad (quiénes confirmaron reingreso y quiénes no). */
+function exportarContinuidad() {
+  showToast('Generando reporte…', 'info');
+  apiFetch('/apiAnalitica/Analitica/ExportarContinuidad/')
+    .then(res => {
+      if (!res.ok) throw new Error('No se pudo generar el reporte');
+      const cd = res.headers.get('Content-Disposition') || '';
+      const m = cd.match(/filename="?([^";]+)"?/);
+      return res.blob().then(blob => ({ blob, nombre: m ? m[1] : 'Continuidad.xlsx' }));
+    })
+    .then(({ blob, nombre }) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = nombre;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast('Reporte descargado', 'success');
+    })
+    .catch(err => showToast(err.message, 'error'));
+}
 
 // Cache global de registros cargados para modal detalles
 let cachedPendingRegistrations = [];
@@ -183,41 +287,5 @@ function confirmarMatricula(registrationId) {
     });
 }
 
-// Cargar configuración de matrícula en línea
-async function cargarConfiguracionMatricula() {
-  try {
-    const response = await apiFetch('/apiUserCreate/UsuarioCreate/GetEnrollmentWindow/');
-    const data = await response.json();
-    
-    document.getElementById('settings_enrollment_enabled').value = data.enabled ? 'true' : 'false';
-    document.getElementById('settings_enrollment_period').value = data.period || '';
-  } catch (err) {
-    console.error('Error cargando configuración de matrícula:', err);
-  }
-}
-
-// Guardar configuración de matrícula en línea
-async function guardarConfiguracionMatricula() {
-  const enabledVal = document.getElementById('settings_enrollment_enabled').value === 'true';
-  const periodVal = document.getElementById('settings_enrollment_period').value.trim();
-  
-  if (!periodVal) {
-    showToast('El periodo académico no puede estar vacío', 'warning');
-    return;
-  }
-  
-  try {
-    const response = await apiFetch('/apiUserCreate/UsuarioCreate/ToggleEnrollmentWindow/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ enabled: enabledVal, period: periodVal })
-    });
-    
-    if (!response.ok) throw new Error('Error al guardar configuración');
-    
-    showToast('Configuración guardada exitosamente', 'success');
-  } catch (err) {
-    console.error('Error guardando configuración de matrícula:', err);
-    showToast('Error al guardar la configuración', 'error');
-  }
-}
+// La configuración de matrícula ahora se maneja por ventana (Reingreso y
+// Matrícula) en cargarVentanas() / guardarVentana(), al inicio de este archivo.

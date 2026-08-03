@@ -6,6 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestión de Matrículas — PA-INAM</title>
   <link rel="stylesheet" href="css/global.css?v=1.0.8">
+  <style>
+    /* Tarjetas de configuración de cada ventana de matrícula */
+    .ventana-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .ventana-card__head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
+    }
+    .ventana-card__title {
+      font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700;
+      color: var(--slate-800); margin: 0;
+    }
+    .ventana-card .form__button { margin-top: 8px; }
+  </style>
 </head>
 <body>
   <div class="background"></div>
@@ -89,26 +109,96 @@
         <div id="step_2" class="step-content">
           <section class="layout__section" style="width: 100%; max-width: 950px; margin: 0;">
             <div class="section">
-              <div class="section__title">⚙️ Configuración de Ventana de Matrícula en Línea</div>
-              
-              <div class="form__grid">
-                <div class="form__group">
-                  <label class="form__label" for="settings_enrollment_enabled">Matrícula en Línea</label>
-                  <select class="form__control" id="settings_enrollment_enabled">
-                    <option value="true">Habilitada</option>
-                    <option value="false">Inhabilitada</option>
-                  </select>
+              <div class="section__title">⚙️ Ventanas de Matrícula en Línea</div>
+              <p style="color: var(--slate-500); font-size: 0.88rem; margin: -6px 0 18px;">
+                Se abren de forma secuencial: primero <strong>Reingreso</strong>, para que los
+                tutores confirmen la continuidad de sus hijos; luego <strong>Matrícula</strong>,
+                para llenar los cupos libres y recibir estudiantes nuevos.
+                Cada ventana se cierra automáticamente al pasar su fecha de fin.
+              </p>
+
+              <!-- ===== Ventana de Reingreso ===== -->
+              <div class="ventana-card" id="card-reingreso">
+                <div class="ventana-card__head">
+                  <h3 class="ventana-card__title">🔁 Reingreso</h3>
+                  <span class="status-pill" id="estado-reingreso">—</span>
                 </div>
-                <div class="form__group">
-                  <label class="form__label" for="settings_enrollment_period">Periodo Académico Activo</label>
-                  <input type="text" class="form__control" id="settings_enrollment_period" placeholder="Ej. 2026-1">
+                <div class="form__grid">
+                  <div class="form__group">
+                    <label class="form__label" for="rein_enabled">Estado</label>
+                    <select class="form__control" id="rein_enabled">
+                      <option value="true">Habilitada</option>
+                      <option value="false">Inhabilitada</option>
+                    </select>
+                  </div>
+                  <div class="form__group">
+                    <label class="form__label" for="rein_period">Periodo Académico</label>
+                    <input type="text" class="form__control" id="rein_period" placeholder="Ej. 2026-1">
+                  </div>
+                  <div class="form__group">
+                    <label class="form__label" for="rein_start">Fecha de inicio</label>
+                    <input type="date" class="form__control" id="rein_start">
+                  </div>
+                  <div class="form__group">
+                    <label class="form__label" for="rein_end">Fecha de fin</label>
+                    <input type="date" class="form__control" id="rein_end">
+                  </div>
+                </div>
+                <div class="form__button">
+                  <button type="button" class="form__button--green" data-ventana="reingreso">
+                    💾 Guardar Reingreso
+                  </button>
                 </div>
               </div>
 
-              <div class="form__button">
-                <button type="button" class="form__button--green" id="btn-save-settings">
-                  💾 Guardar Configuración
-                </button>
+              <!-- ===== Ventana de Matrícula ===== -->
+              <div class="ventana-card" id="card-matricula">
+                <div class="ventana-card__head">
+                  <h3 class="ventana-card__title">📝 Matrícula</h3>
+                  <span class="status-pill" id="estado-matricula">—</span>
+                </div>
+                <div class="form__grid">
+                  <div class="form__group">
+                    <label class="form__label" for="mat_enabled">Estado</label>
+                    <select class="form__control" id="mat_enabled">
+                      <option value="true">Habilitada</option>
+                      <option value="false">Inhabilitada</option>
+                    </select>
+                  </div>
+                  <div class="form__group">
+                    <label class="form__label" for="mat_period">Periodo Académico</label>
+                    <input type="text" class="form__control" id="mat_period" placeholder="Ej. 2026-1">
+                  </div>
+                  <div class="form__group">
+                    <label class="form__label" for="mat_start">Fecha de inicio</label>
+                    <input type="date" class="form__control" id="mat_start">
+                  </div>
+                  <div class="form__group">
+                    <label class="form__label" for="mat_end">Fecha de fin</label>
+                    <input type="date" class="form__control" id="mat_end">
+                  </div>
+                </div>
+                <div class="form__button">
+                  <button type="button" class="form__button--green" data-ventana="matricula">
+                    💾 Guardar Matrícula
+                  </button>
+                </div>
+              </div>
+
+              <!-- ===== Reporte de continuidad ===== -->
+              <div class="ventana-card">
+                <div class="ventana-card__head">
+                  <h3 class="ventana-card__title">📊 Reporte de continuidad</h3>
+                </div>
+                <p style="color: var(--slate-500); font-size: 0.86rem; margin: 0 0 14px;">
+                  Descarga en Excel quiénes confirmaron reingreso y quiénes no, con los
+                  datos de contacto del tutor para darles seguimiento.
+                </p>
+                <div class="form__button">
+                  <button type="button" class="form__button--purple" id="btn-export-continuidad">
+                    ⬇️ Descargar Excel
+                  </button>
+                </div>
               </div>
             </div>
           </section>

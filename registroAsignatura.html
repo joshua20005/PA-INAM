@@ -90,6 +90,17 @@
                   <option>Semestre II</option>
                 </select>
               </div>
+              <div class="form__group">
+                <label class="form__label" for="tipo_evaluacion">Tipo de Evaluación</label>
+                <select class="form__control" id="tipo_evaluacion" name="tipo_evaluacion" required>
+                  <option value="CUANTITATIVA" selected>Cuantitativa (0 – 100)</option>
+                  <option value="CUALITATIVA">Cualitativa (AA / AS / AF / AI)</option>
+                </select>
+                <small style="display: block; margin-top: 6px; color: var(--slate-500); font-size: 0.78rem;">
+                  Las cualitativas se califican por categoría de logro:
+                  AA Avanzado · AS Satisfactorio · AF Fundamental · AI Inicial.
+                </small>
+              </div>
             </div>
             <div class="form__button">
               <button type="submit" class="form__button--green" onclick="guardarasignatura(event)">Guardar</button>

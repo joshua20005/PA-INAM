@@ -105,6 +105,13 @@
       color: var(--white);
       box-shadow: 0 3px 10px rgba(243, 156, 18, 0.35);
     }
+    /* Tardanza: el estudiante llegó tarde pero sí asistió. */
+    .status-btn.active-T {
+      background: linear-gradient(135deg, var(--info), #2563EB);
+      border-color: var(--info);
+      color: var(--white);
+      box-shadow: 0 3px 10px rgba(59, 130, 246, 0.35);
+    }
 
     /* Student counter badge */
     .student-counter {
@@ -232,6 +239,7 @@
     .chip-P { background: var(--success); }
     .chip-A { background: var(--danger); }
     .chip-J { background: var(--warning); }
+    .chip-T { background: var(--info); }
     .chip-none { background: var(--gray-300); color: var(--gray-600); }
 
     /* Save button area */
@@ -385,6 +393,8 @@
                 <span class="badge badge-success" id="count-P" title="Presentes">0</span> Presentes
                 <span class="badge badge-danger" id="count-A" title="Ausentes">0</span> Ausentes
                 <span class="badge badge-warning" id="count-J" title="Justificados">0</span> Justificados
+                <span class="badge" id="count-T" title="Tardanzas"
+                  style="background: var(--info); color: var(--white);">0</span> Tardanzas
               </div>
 
               <!-- Student Table -->
@@ -402,6 +412,10 @@
                 <div style="font-size: 0.85rem; color: var(--gray-600);">
                   <span id="last-saved-info"></span>
                 </div>
+                <button type="button" class="form__button--purple" onclick="exportarAsistencia()"
+                  style="padding: 12px 24px; font-weight: 700; font-family: var(--font-heading); border: none; border-radius: var(--radius-sm); cursor: pointer; color: var(--white); font-size: 0.95rem; letter-spacing: 0.3px; margin-right: 10px;">
+                  📊 Exportar a Excel
+                </button>
                 <button type="button" class="form__button--green" onclick="saveAttendance()"
                   style="padding: 12px 30px; font-weight: 700; font-family: var(--font-heading); border: none; border-radius: var(--radius-sm); cursor: pointer; color: var(--white); font-size: 0.95rem; letter-spacing: 0.3px;">
                   💾 Guardar Asistencia

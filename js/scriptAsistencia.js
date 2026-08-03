@@ -249,6 +249,7 @@ function renderAttendanceTable(students) {
     const isP = s.status === 'P' ? 'active-P' : '';
     const isA = s.status === 'A' ? 'active-A' : '';
     const isJ = s.status === 'J' ? 'active-J' : '';
+    const isT = s.status === 'T' ? 'active-T' : '';
 
     html += `
         <tr>
@@ -263,6 +264,8 @@ function renderAttendanceTable(students) {
                 onclick="setStatus(this, '${s.id_registration}', 'A')" title="Ausente">✖</button>
               <button type="button" class="status-btn ${isJ}" data-reg="${s.id_registration}" data-status="J"
                 onclick="setStatus(this, '${s.id_registration}', 'J')" title="Justificado">J</button>
+              <button type="button" class="status-btn ${isT}" data-reg="${s.id_registration}" data-status="T"
+                onclick="setStatus(this, '${s.id_registration}', 'T')" title="Tardanza">T</button>
             </div>
           </td>
         </tr>`;
@@ -285,7 +288,7 @@ function setStatus(btn, regId, newStatus) {
   // Find all buttons in the same row
   const row = btn.closest('tr');
   row.querySelectorAll('.status-btn').forEach(b => {
-    b.classList.remove('active-P', 'active-A', 'active-J');
+    b.classList.remove('active-P', 'active-A', 'active-J', 'active-T');
   });
 
   // Activate the clicked button
@@ -305,7 +308,7 @@ function setAllStatus(newStatus) {
   // Update all buttons
   document.querySelectorAll('.status-group').forEach(group => {
     group.querySelectorAll('.status-btn').forEach(btn => {
-      btn.classList.remove('active-P', 'active-A', 'active-J');
+      btn.classList.remove('active-P', 'active-A', 'active-J', 'active-T');
       if (btn.dataset.status === newStatus) {
         btn.classList.add(`active-${newStatus}`);
       }
@@ -313,21 +316,59 @@ function setAllStatus(newStatus) {
   });
 
   updateCounters();
-  showToast(`Todos marcados como ${newStatus === 'P' ? 'Presente' : newStatus === 'A' ? 'Ausente' : 'Justificado'}`, 'info');
+  const NOMBRES_ESTADO = { P: 'Presente', A: 'Ausente', J: 'Justificado', T: 'Tardanza' };
+  showToast(`Todos marcados como ${NOMBRES_ESTADO[newStatus] || newStatus}`, 'info');
 }
 
 // Update counter badges
 function updateCounters() {
-  let p = 0, a = 0, j = 0;
+  let p = 0, a = 0, j = 0, t = 0;
   currentStudents.forEach(s => {
     if (s.status === 'P') p++;
     else if (s.status === 'A') a++;
     else if (s.status === 'J') j++;
+    else if (s.status === 'T') t++;
   });
 
   document.getElementById('count-P').textContent = p;
   document.getElementById('count-A').textContent = a;
   document.getElementById('count-J').textContent = j;
+  const badgeT = document.getElementById('count-T');
+  if (badgeT) badgeT.textContent = t;
+}
+
+/**
+ * Descarga el resumen de asistencia del grupo en Excel.
+ * El backend responde con el archivo; se dispara la descarga desde el blob
+ * porque la petición necesita el token de autorización en la cabecera.
+ */
+function exportarAsistencia() {
+  const groupId = document.getElementById('att_group').value;
+  if (!groupId) {
+    showToast('Seleccione un grupo primero', 'warning');
+    return;
+  }
+
+  showToast('Generando archivo Excel…', 'info');
+  apiFetch(`/apiAnalitica/Analitica/ExportarAsistencia/?id_group=${encodeURIComponent(groupId)}`)
+    .then(res => {
+      if (!res.ok) throw new Error('No se pudo generar el archivo');
+      const cd = res.headers.get('Content-Disposition') || '';
+      const m = cd.match(/filename="?([^";]+)"?/);
+      return res.blob().then(blob => ({ blob, nombre: m ? m[1] : 'Asistencia.xlsx' }));
+    })
+    .then(({ blob, nombre }) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = nombre;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast('Archivo descargado', 'success');
+    })
+    .catch(err => showToast(err.message, 'error'));
 }
 
 // Save attendance to the backend
@@ -442,6 +483,7 @@ function renderHistoryTable(data) {
   html += `<th style="background: var(--success-hover);">P</th>`;
   html += `<th style="background: var(--danger-hover);">A</th>`;
   html += `<th style="background: #e67e22;">J</th>`;
+  html += `<th style="background: #2563EB;">T</th>`;
   html += `</tr></thead><tbody>`;
 
   students.forEach((s, idx) => {
@@ -449,7 +491,7 @@ function renderHistoryTable(data) {
       <td>${idx + 1}</td>
       <td>${escapeHtml(s.name_student)}</td>`;
 
-    let countP = 0, countA = 0, countJ = 0;
+    let countP = 0, countA = 0, countJ = 0, countT = 0;
     dates.forEach(d => {
       const st = s.attendance[d] || '-';
       let chipClass = 'chip-none';
@@ -458,6 +500,7 @@ function renderHistoryTable(data) {
       if (st === 'P') { chipClass = 'chip-P'; label = '✔'; countP++; }
       else if (st === 'A') { chipClass = 'chip-A'; label = '✖'; countA++; }
       else if (st === 'J') { chipClass = 'chip-J'; label = 'J'; countJ++; }
+      else if (st === 'T') { chipClass = 'chip-T'; label = 'T'; countT++; }
 
       html += `<td><span class="chip ${chipClass}">${label}</span></td>`;
     });
@@ -465,6 +508,7 @@ function renderHistoryTable(data) {
     html += `<td style="font-weight: 700; color: var(--success);">${countP}</td>`;
     html += `<td style="font-weight: 700; color: var(--danger);">${countA}</td>`;
     html += `<td style="font-weight: 700; color: var(--warning);">${countJ}</td>`;
+    html += `<td style="font-weight: 700; color: var(--info);">${countT}</td>`;
     html += `</tr>`;
   });
 
