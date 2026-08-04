@@ -152,12 +152,61 @@ function showTab(tabNum) {
 }
 
 // Cargar listado de matrículas pendientes
-function loadPendingRegistrations() {
-  const tbody = document.getElementById('pending-registrations-tbody');
-  const noPendingMsg = document.getElementById('no-pending-message');
-  const tableWrapper = document.getElementById('table-wrapper');
-  
+/** Fila de una matrícula pendiente. */
+function _filaPendiente(reg) {
+  const tr = document.createElement('tr');
+  tr.className = 'form__table-fila';
+
+  // Quien registró la matrícula no puede confirmarla: se muestra el botón
+  // deshabilitado con la razón, en vez de dejar que falle al pulsarlo.
+  const botonConfirmar = reg.puede_confirmar
+    ? `<button type="button" class="form__button--green"
+         style="padding: 6px 12px; font-size: 0.82rem; margin: 0; box-shadow: none;"
+         onclick="confirmarMatricula(${reg.id})">Confirmar</button>`
+    : `<button type="button" class="form__button--green" disabled
+         style="padding: 6px 12px; font-size: 0.82rem; margin: 0; box-shadow: none; opacity: 0.5; cursor: not-allowed;"
+         title="Usted registró esta matrícula; debe confirmarla otra persona.">Confirmar</button>`;
+
+  tr.innerHTML = `
+    <td class="form__table-campo" style="font-weight:600; color:var(--primary-dark);">${escapeHtml(reg.code_registration)}</td>
+    <td class="form__table-campo" style="text-align: left; padding-left: 12px;">${escapeHtml(reg.student_name)}<br><small style="color:var(--gray-600);">${escapeHtml(reg.student_code)}</small></td>
+    <td class="form__table-campo">${escapeHtml(reg.level_registration)}</td>
+    <td class="form__table-campo">${escapeHtml(reg.mode_registration)}</td>
+    <td class="form__table-campo"><span style="background:var(--primary-glow); color:var(--primary); padding: 4px 8px; border-radius:var(--radius-sm); font-size:0.85rem; font-weight:600;">${escapeHtml(reg.group_code)}</span></td>
+    <td class="form__table-campo">${escapeHtml(String(reg.anio_lectivo || ''))}</td>
+    <td class="form__table-campo">
+      <div style="display: flex; gap: 8px; justify-content: center;">
+        <button type="button" class="form__button--purple" style="padding: 6px 12px; font-size: 0.82rem; margin: 0; box-shadow: none;" onclick="openDetailsModal(${reg.id})">
+          👁️ Detalles
+        </button>
+        ${botonConfirmar}
+      </div>
+    </td>
+  `;
+  return tr;
+}
+
+/** Pinta un bloque (nuevos ingresos o reingresos) con su contador. */
+function _pintarBloque(idTbody, idConteo, registros, vacio) {
+  const tbody = document.getElementById(idTbody);
+  const conteo = document.getElementById(idConteo);
   if (!tbody) return;
+
+  tbody.innerHTML = '';
+  if (conteo) conteo.textContent = registros.length;
+
+  if (registros.length === 0) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td colspan="7" class="pendientes-bloque__vacio">${vacio}</td>`;
+    tbody.appendChild(tr);
+    return;
+  }
+  registros.forEach(reg => tbody.appendChild(_filaPendiente(reg)));
+}
+
+function loadPendingRegistrations() {
+  const noPendingMsg = document.getElementById('no-pending-message');
+  if (!document.getElementById('tbody-nuevos')) return;
 
   apiFetch('/apiRegistration/Registration/GetPendingRegistrations/')
     .then(res => {
@@ -165,40 +214,24 @@ function loadPendingRegistrations() {
       return res.json();
     })
     .then(data => {
-      cachedPendingRegistrations = data; // guardar en cache local
-      
-      tbody.innerHTML = '';
-      if (data.length === 0) {
-        if (tableWrapper) tableWrapper.style.display = 'none';
-        if (noPendingMsg) noPendingMsg.style.display = 'block';
-        return;
-      }
+      const nuevos = data.nuevos_ingresos || [];
+      const reingresos = data.reingresos || [];
 
-      if (tableWrapper) tableWrapper.style.display = 'block';
-      if (noPendingMsg) noPendingMsg.style.display = 'none';
+      // El modal de detalles busca por id sobre una sola lista.
+      cachedPendingRegistrations = nuevos.concat(reingresos);
 
-      data.forEach(reg => {
-        const tr = document.createElement('tr');
-        tr.className = 'form__table-fila';
-        tr.innerHTML = `
-          <td class="form__table-campo" style="font-weight:600; color:var(--primary-dark);">${escapeHtml(reg.code_registration)}</td>
-          <td class="form__table-campo" style="text-align: left; padding-left: 12px;">${escapeHtml(reg.student_name)}<br><small style="color:var(--gray-600);">${escapeHtml(reg.student_code)}</small></td>
-          <td class="form__table-campo">${escapeHtml(reg.level_registration)}</td>
-          <td class="form__table-campo">${escapeHtml(reg.mode_registration)}</td>
-          <td class="form__table-campo"><span style="background:var(--primary-glow); color:var(--primary); padding: 4px 8px; border-radius:var(--radius-sm); font-size:0.85rem; font-weight:600;">${escapeHtml(reg.group_code)}</span></td>
-          <td class="form__table-campo">
-            <div style="display: flex; gap: 8px; justify-content: center;">
-              <button type="button" class="form__button--purple" style="padding: 6px 12px; font-size: 0.82rem; margin: 0; box-shadow: none;" onclick="openDetailsModal(${reg.id})">
-                👁️ Detalles
-              </button>
-              <button type="button" class="form__button--green" style="padding: 6px 12px; font-size: 0.82rem; margin: 0; box-shadow: none;" onclick="confirmarMatricula(${reg.id})">
-                Confirmar
-              </button>
-            </div>
-          </td>
-        `;
-        tbody.appendChild(tr);
+      const hayPendientes = cachedPendingRegistrations.length > 0;
+      if (noPendingMsg) noPendingMsg.style.display = hayPendientes ? 'none' : 'block';
+      ['bloque-nuevos', 'bloque-reingresos'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = hayPendientes ? 'block' : 'none';
       });
+      if (!hayPendientes) return;
+
+      _pintarBloque('tbody-nuevos', 'conteo-nuevos', nuevos,
+        'Sin nuevos ingresos pendientes.');
+      _pintarBloque('tbody-reingresos', 'conteo-reingresos', reingresos,
+        'Sin reingresos pendientes.');
     })
     .catch(err => {
       console.error(err);

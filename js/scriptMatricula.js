@@ -391,8 +391,8 @@ function guardarMatricula() {
   formData.append('name_document', document.getElementById('name_document').value);
   formData.append('file', document.getElementById('file').files[0]);
 
-  const userRole = localStorage.getItem('user_role');
-  formData.append('status_registration', (userRole === 'ADMINISTRACION' || userRole === 'DIRECTOR') ? 'CONFIRMADA' : 'PENDIENTE');
+  // El estado de la matrícula lo decide el servidor: toda matrícula nace
+  // pendiente y la confirma después una persona distinta a quien la registró.
 
   apiFetch('/apiRegistration/Registration/PostFullRegistration/', {
     method: 'POST',

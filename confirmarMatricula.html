@@ -25,6 +25,20 @@
       color: var(--slate-800); margin: 0;
     }
     .ventana-card .form__button { margin-top: 8px; }
+
+    /* Bloques de matrículas pendientes (nuevos ingresos / reingresos) */
+    .pendientes-bloque { margin-bottom: 26px; }
+    .pendientes-bloque__head {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+    }
+    .pendientes-bloque__title {
+      font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+      color: var(--slate-800); margin: 0;
+    }
+    .pendientes-bloque__vacio {
+      color: var(--gray-600); font-size: 0.87rem; font-style: italic;
+      padding: 14px 4px;
+    }
   </style>
 </head>
 <body>
@@ -78,28 +92,66 @@
         <div id="step_1" class="step-content active">
           <section class="layout__section" style="width: 100%; max-width: 950px; margin: 0;">
             <div class="section">
-              <div class="section__title">⏳ Matrículas en Línea Pendientes de Confirmar</div>
-              
+              <div class="section__title">⏳ Matrículas Pendientes de Confirmar</div>
+              <p style="color: var(--slate-500); font-size: 0.88rem; margin: -6px 0 18px;">
+                Toda matrícula requiere la aprobación de Dirección o Secretaría.
+                Quien la registró no puede confirmarla: debe hacerlo otra persona.
+              </p>
+
               <div id="no-pending-message" style="display: none; text-align: center; padding: 30px; color: var(--gray-600); font-weight: 500;">
                 No hay matrículas pendientes de confirmación en este momento.
               </div>
 
-              <div class="table-responsive" id="table-wrapper">
-                <table class="form__table" style="width: 100%;">
-                  <thead>
-                    <tr>
-                      <th class="form__table-campo form__table-campo--header">Código Reg.</th>
-                      <th class="form__table-campo form__table-campo--header">Estudiante</th>
-                      <th class="form__table-campo form__table-campo--header">Grado Elegido</th>
-                      <th class="form__table-campo form__table-campo--header">Turno</th>
-                      <th class="form__table-campo form__table-campo--header">Grupo</th>
-                      <th class="form__table-campo form__table-campo--header" style="width: 210px;">Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody id="pending-registrations-tbody">
-                    <!-- Rellenado dinámicamente -->
-                  </tbody>
-                </table>
+              <!-- ===== Nuevos ingresos ===== -->
+              <div class="pendientes-bloque" id="bloque-nuevos">
+                <div class="pendientes-bloque__head">
+                  <h3 class="pendientes-bloque__title">🆕 Nuevos Ingresos</h3>
+                  <span class="status-pill status-pill--neutral" id="conteo-nuevos">0</span>
+                </div>
+                <div class="table-responsive">
+                  <table class="form__table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th class="form__table-campo form__table-campo--header">Código Reg.</th>
+                        <th class="form__table-campo form__table-campo--header">Estudiante</th>
+                        <th class="form__table-campo form__table-campo--header">Grado Elegido</th>
+                        <th class="form__table-campo form__table-campo--header">Turno</th>
+                        <th class="form__table-campo form__table-campo--header">Grupo</th>
+                        <th class="form__table-campo form__table-campo--header">Ciclo</th>
+                        <th class="form__table-campo form__table-campo--header" style="width: 210px;">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody-nuevos">
+                      <!-- Rellenado dinámicamente -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- ===== Reingresos ===== -->
+              <div class="pendientes-bloque" id="bloque-reingresos">
+                <div class="pendientes-bloque__head">
+                  <h3 class="pendientes-bloque__title">🔁 Reingresos</h3>
+                  <span class="status-pill status-pill--neutral" id="conteo-reingresos">0</span>
+                </div>
+                <div class="table-responsive">
+                  <table class="form__table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th class="form__table-campo form__table-campo--header">Código Reg.</th>
+                        <th class="form__table-campo form__table-campo--header">Estudiante</th>
+                        <th class="form__table-campo form__table-campo--header">Grado Elegido</th>
+                        <th class="form__table-campo form__table-campo--header">Turno</th>
+                        <th class="form__table-campo form__table-campo--header">Grupo</th>
+                        <th class="form__table-campo form__table-campo--header">Ciclo</th>
+                        <th class="form__table-campo form__table-campo--header" style="width: 210px;">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody-reingresos">
+                      <!-- Rellenado dinámicamente -->
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </section>
