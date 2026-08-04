@@ -182,6 +182,18 @@ function handleTeacherFilterChange(prefix, teacherId) {
 // Current attendance data in memory
 let currentStudents = [];
 
+// Copia de la asistencia tal como está en la base, para saber si lo que se ve
+// en pantalla tiene cambios todavía sin guardar.
+let estadoGuardado = '';
+
+function _instantanea(estudiantes) {
+  return (estudiantes || []).map(s => `${s.id_registration}:${s.status}`).join('|');
+}
+
+function hayCambiosSinGuardar() {
+  return _instantanea(currentStudents) !== estadoGuardado;
+}
+
 // Load attendance for selected group/subject/date
 function loadAttendance() {
   const groupId = document.getElementById('att_group').value;
@@ -203,6 +215,7 @@ function loadAttendance() {
     .then(response => {
       const students = response.Record || response;
       currentStudents = students;
+      estadoGuardado = _instantanea(students);
       renderAttendanceTable(students);
     })
     .catch(err => {
@@ -347,7 +360,7 @@ function updateCounters() {
  * 'hist' al consultar el historial). La descarga se hace desde el blob porque
  * la petición necesita el token en la cabecera y no se puede abrir la URL.
  */
-function exportarAsistencia(prefijo) {
+function exportarAsistencia(prefijo, desde, hasta) {
   const groupId = document.getElementById(`${prefijo}_group`).value;
   const subjectId = document.getElementById(`${prefijo}_subject`).value;
   if (!groupId || !subjectId) {
@@ -355,18 +368,20 @@ function exportarAsistencia(prefijo) {
     return;
   }
 
+  let url = `/apiAnalitica/Analitica/ExportarAsistencia/?id_group=${encodeURIComponent(groupId)}`
+    + `&id_subject=${encodeURIComponent(subjectId)}`;
+  if (desde) url += `&desde=${encodeURIComponent(desde)}`;
+  if (hasta) url += `&hasta=${encodeURIComponent(hasta)}`;
+
   showToast('Generando archivo Excel…', 'info');
-  apiFetch(`/apiAnalitica/Analitica/ExportarAsistencia/?id_group=${encodeURIComponent(groupId)}`
-    + `&id_subject=${encodeURIComponent(subjectId)}`)
+  apiFetch(url)
     .then(res => {
       if (!res.ok) {
         return res.json()
           .then(e => { throw new Error(e.error || 'No se pudo generar el archivo'); })
           .catch(() => { throw new Error('No se pudo generar el archivo'); });
       }
-      const cd = res.headers.get('Content-Disposition') || '';
-      const m = cd.match(/filename="?([^";]+)"?/);
-      return res.blob().then(blob => ({ blob, nombre: m ? m[1] : 'Asistencia.xlsx' }));
+      return res.blob().then(blob => ({ blob, nombre: _nombreDescarga(res) }));
     })
     .then(({ blob, nombre }) => {
       const url = URL.createObjectURL(blob);
@@ -382,9 +397,36 @@ function exportarAsistencia(prefijo) {
     .catch(err => showToast(err.message, 'error'));
 }
 
-/** Exporta desde la pestaña de historial. */
+/**
+ * Exporta la lista que se acaba de pasar: solo la fecha en pantalla, no el
+ * histórico completo.
+ */
+function exportarAsistenciaDelDia() {
+  const fecha = document.getElementById('att_date').value;
+  if (!fecha) {
+    showToast('Seleccione una fecha primero', 'warning');
+    return;
+  }
+  // El botón aparece con la lista cargada, que no implica haberla guardado.
+  // Se exporta lo que hay en la base, así que conviene avisar si hay cambios
+  // sin guardar para que el archivo no contradiga lo que se está viendo.
+  if (hayCambiosSinGuardar() &&
+      !confirm('Hay cambios sin guardar. El archivo contendrá la asistencia '
+        + 'guardada, no lo que ve en pantalla.\n\n¿Desea exportar de todos modos?')) {
+    return;
+  }
+  exportarAsistencia('att', fecha, fecha);
+}
+
+/** Exporta desde la pestaña de historial, con el rango indicado si lo hay. */
 function exportarHistorial() {
-  exportarAsistencia('hist');
+  const desde = document.getElementById('hist_desde').value;
+  const hasta = document.getElementById('hist_hasta').value;
+  if (desde && hasta && hasta < desde) {
+    showToast('La fecha final no puede ser anterior a la inicial', 'warning');
+    return;
+  }
+  exportarAsistencia('hist', desde, hasta);
 }
 
 // Save attendance to the backend
@@ -420,6 +462,7 @@ function saveAttendance() {
     .then(response => {
       const msg = response.Message || 'Asistencia guardada correctamente';
       showToast(msg, 'success');
+      estadoGuardado = _instantanea(currentStudents);
 
       const now = new Date();
       const timeStr = now.toLocaleTimeString('es-NI', { hour: '2-digit', minute: '2-digit' });

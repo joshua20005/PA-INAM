@@ -116,9 +116,7 @@ function exportarContinuidad() {
   apiFetch('/apiAnalitica/Analitica/ExportarContinuidad/')
     .then(res => {
       if (!res.ok) throw new Error('No se pudo generar el reporte');
-      const cd = res.headers.get('Content-Disposition') || '';
-      const m = cd.match(/filename="?([^";]+)"?/);
-      return res.blob().then(blob => ({ blob, nombre: m ? m[1] : 'Continuidad.xlsx' }));
+      return res.blob().then(blob => ({ blob, nombre: _nombreDescarga(res, 'Continuidad.xlsx') }));
     })
     .then(({ blob, nombre }) => {
       const url = URL.createObjectURL(blob);

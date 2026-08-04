@@ -187,3 +187,27 @@ function showToast(message, type = 'info') {
     }, 400);
   }, 4000);
 }
+
+/**
+ * Nombre con el que debe guardarse un archivo descargado.
+ *
+ * El servidor envía dos formas en Content-Disposition: `filename*` codificada
+ * en UTF-8 (la que conserva los acentos) y `filename` en ASCII como respaldo.
+ * Se prefiere la primera. Requiere que el backend exponga la cabecera vía
+ * CORS; si no llega, se usa el nombre por defecto que indique quien llama.
+ */
+function _nombreDescarga(respuesta, porDefecto = 'reporte.xlsx') {
+  const cd = respuesta.headers.get('Content-Disposition') || '';
+
+  const utf8 = cd.match(/filename\*=UTF-8''([^;]+)/i);
+  if (utf8) {
+    try {
+      return decodeURIComponent(utf8[1].trim());
+    } catch (e) {
+      // Codificación inválida: se sigue con la forma ASCII.
+    }
+  }
+
+  const ascii = cd.match(/filename="?([^";]+)"?/i);
+  return ascii ? ascii[1].trim() : porDefecto;
+}

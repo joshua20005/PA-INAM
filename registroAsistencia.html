@@ -412,7 +412,7 @@
                 <div style="font-size: 0.85rem; color: var(--gray-600);">
                   <span id="last-saved-info"></span>
                 </div>
-                <button type="button" class="form__button--purple" onclick="exportarAsistencia('att')"
+                <button type="button" class="form__button--purple" onclick="exportarAsistenciaDelDia()"
                   style="padding: 12px 24px; font-weight: 700; font-family: var(--font-heading); border: none; border-radius: var(--radius-sm); cursor: pointer; color: var(--white); font-size: 0.95rem; letter-spacing: 0.3px; margin-right: 10px;">
                   📊 Exportar a Excel
                 </button>
@@ -464,15 +464,26 @@
 
               <!-- Filtro de búsqueda y exportación -->
               <div style="display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 16px;">
-                <div class="form__group" style="flex: 1 1 260px; max-width: 400px; margin: 0;">
+                <div class="form__group" style="flex: 1 1 220px; max-width: 340px; margin: 0;">
                   <label class="form__label" for="hist_search">Filtrar Estudiante</label>
                   <input type="text" class="form__control" id="hist_search" placeholder="🔍 Escribe para filtrar..." oninput="filterHistory()">
+                </div>
+                <div class="form__group" style="flex: 0 1 165px; margin: 0;">
+                  <label class="form__label" for="hist_desde">Exportar desde</label>
+                  <input type="date" class="form__control" id="hist_desde">
+                </div>
+                <div class="form__group" style="flex: 0 1 165px; margin: 0;">
+                  <label class="form__label" for="hist_hasta">Hasta</label>
+                  <input type="date" class="form__control" id="hist_hasta">
                 </div>
                 <button type="button" class="form__button--purple" onclick="exportarHistorial()"
                   style="padding: 10px 20px; font-weight: 600; font-family: var(--font-heading); border: none; border-radius: var(--radius-sm); cursor: pointer; color: var(--white); font-size: 0.9rem;">
                   📊 Exportar a Excel
                 </button>
               </div>
+              <p style="color: var(--gray-600); font-size: 0.8rem; margin: -8px 0 16px;">
+                Deje las fechas vacías para exportar el ciclo completo.
+              </p>
 
               <!-- History Table Container -->
               <div id="history-table-container">
@@ -491,7 +502,7 @@
     </div>
   </div>
 
-  <script src="js/global.js"></script>
-  <script src="js/scriptAsistencia.js"></script>
+  <script src="js/global.js?v=1.1.0"></script>
+  <script src="js/scriptAsistencia.js?v=1.1.0"></script>
 </body>
 </html>
