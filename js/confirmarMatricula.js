@@ -152,6 +152,30 @@ function showTab(tabNum) {
 }
 
 // Cargar listado de matrículas pendientes
+/**
+ * Ocupación del grupo: "28/30" más las pendientes que aún compiten por el cupo.
+ * Es informativo — un grupo lleno no impide confirmar, solo avisa que sería
+ * una excepción.
+ */
+function _badgeCupo(reg) {
+  const total = reg.cupo_total || 0;
+  if (!total) return '';
+
+  const confirmados = reg.cupo_confirmados || 0;
+  const pendientes = reg.cupo_pendientes || 0;
+  const lleno = confirmados >= total;
+
+  const color = lleno ? 'var(--danger)' : 'var(--gray-600)';
+  const titulo = lleno
+    ? `Grupo lleno (${confirmados}/${total} confirmados). Confirmar sería una excepción.`
+    : `${confirmados} de ${total} cupos confirmados; ${pendientes} pendientes por revisar.`;
+
+  return `<span title="${titulo}"
+    style="display:block; margin-top:4px; font-size:0.74rem; font-weight:600; color:${color};">
+    ${confirmados}/${total}${pendientes ? ` · ${pendientes} pend.` : ''}
+  </span>`;
+}
+
 /** Fila de una matrícula pendiente. */
 function _filaPendiente(reg) {
   const tr = document.createElement('tr');
@@ -172,7 +196,10 @@ function _filaPendiente(reg) {
     <td class="form__table-campo" style="text-align: left; padding-left: 12px;">${escapeHtml(reg.student_name)}<br><small style="color:var(--gray-600);">${escapeHtml(reg.student_code)}</small></td>
     <td class="form__table-campo">${escapeHtml(reg.level_registration)}</td>
     <td class="form__table-campo">${escapeHtml(reg.mode_registration)}</td>
-    <td class="form__table-campo"><span style="background:var(--primary-glow); color:var(--primary); padding: 4px 8px; border-radius:var(--radius-sm); font-size:0.85rem; font-weight:600;">${escapeHtml(reg.group_code)}</span></td>
+    <td class="form__table-campo">
+      <span style="background:var(--primary-glow); color:var(--primary); padding: 4px 8px; border-radius:var(--radius-sm); font-size:0.85rem; font-weight:600;">${escapeHtml(reg.group_code)}</span>
+      ${_badgeCupo(reg)}
+    </td>
     <td class="form__table-campo">${escapeHtml(String(reg.anio_lectivo || ''))}</td>
     <td class="form__table-campo">
       <div style="display: flex; gap: 8px; justify-content: center;">
@@ -295,7 +322,17 @@ function closeDetailsModal() {
 
 // Confirmar matrícula
 function confirmarMatricula(registrationId) {
-  if (!confirm('¿Está seguro de confirmar esta matrícula? El estudiante quedará inscrito formalmente.')) return;
+  const reg = cachedPendingRegistrations.find(r => r.id === registrationId);
+
+  // Si el grupo ya está lleno se advierte antes de confirmar, para que la
+  // excepción sea una decisión consciente y no una sorpresa posterior.
+  let mensaje = '¿Está seguro de confirmar esta matrícula? El estudiante quedará inscrito formalmente.';
+  if (reg && reg.cupo_total && reg.cupo_confirmados >= reg.cupo_total) {
+    mensaje = `El grupo ${reg.group_code} ya tiene ${reg.cupo_confirmados} de `
+      + `${reg.cupo_total} cupos confirmados para el ciclo ${reg.anio_lectivo}.\n\n`
+      + 'Puede confirmarla de todos modos como excepción. ¿Desea continuar?';
+  }
+  if (!confirm(mensaje)) return;
 
   apiFetch('/apiRegistration/Registration/ConfirmRegistration/', {
     method: 'POST',
@@ -312,6 +349,9 @@ function confirmarMatricula(registrationId) {
     })
     .then(data => {
       showToast(data.message || 'Matrícula confirmada correctamente', 'success');
+      // El cupo no bloquea, pero si se rebasó conviene que quede constancia
+      // visible de que fue una excepción.
+      if (data.aviso) showToast(data.aviso, 'warning');
       loadPendingRegistrations();
     })
     .catch(err => {
