@@ -338,21 +338,32 @@ function updateCounters() {
 }
 
 /**
- * Descarga el resumen de asistencia del grupo en Excel.
- * El backend responde con el archivo; se dispara la descarga desde el blob
- * porque la petición necesita el token de autorización en la cabecera.
+ * Descarga la asistencia del grupo en Excel, con una fecha por columna.
+ *
+ * Va por asignatura porque cada docente pasa lista en su propia hora: sumar
+ * todas las materias daría un total que mezcla clases distintas.
+ *
+ * `prefijo` indica de qué pestaña salen los selectores ('att' al pasar lista,
+ * 'hist' al consultar el historial). La descarga se hace desde el blob porque
+ * la petición necesita el token en la cabecera y no se puede abrir la URL.
  */
-function exportarAsistencia() {
-  const groupId = document.getElementById('att_group').value;
-  if (!groupId) {
-    showToast('Seleccione un grupo primero', 'warning');
+function exportarAsistencia(prefijo) {
+  const groupId = document.getElementById(`${prefijo}_group`).value;
+  const subjectId = document.getElementById(`${prefijo}_subject`).value;
+  if (!groupId || !subjectId) {
+    showToast('Seleccione un grupo y una asignatura primero', 'warning');
     return;
   }
 
   showToast('Generando archivo Excel…', 'info');
-  apiFetch(`/apiAnalitica/Analitica/ExportarAsistencia/?id_group=${encodeURIComponent(groupId)}`)
+  apiFetch(`/apiAnalitica/Analitica/ExportarAsistencia/?id_group=${encodeURIComponent(groupId)}`
+    + `&id_subject=${encodeURIComponent(subjectId)}`)
     .then(res => {
-      if (!res.ok) throw new Error('No se pudo generar el archivo');
+      if (!res.ok) {
+        return res.json()
+          .then(e => { throw new Error(e.error || 'No se pudo generar el archivo'); })
+          .catch(() => { throw new Error('No se pudo generar el archivo'); });
+      }
       const cd = res.headers.get('Content-Disposition') || '';
       const m = cd.match(/filename="?([^";]+)"?/);
       return res.blob().then(blob => ({ blob, nombre: m ? m[1] : 'Asistencia.xlsx' }));
@@ -369,6 +380,11 @@ function exportarAsistencia() {
       showToast('Archivo descargado', 'success');
     })
     .catch(err => showToast(err.message, 'error'));
+}
+
+/** Exporta desde la pestaña de historial. */
+function exportarHistorial() {
+  exportarAsistencia('hist');
 }
 
 // Save attendance to the backend

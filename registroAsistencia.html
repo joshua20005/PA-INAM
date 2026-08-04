@@ -412,7 +412,7 @@
                 <div style="font-size: 0.85rem; color: var(--gray-600);">
                   <span id="last-saved-info"></span>
                 </div>
-                <button type="button" class="form__button--purple" onclick="exportarAsistencia()"
+                <button type="button" class="form__button--purple" onclick="exportarAsistencia('att')"
                   style="padding: 12px 24px; font-weight: 700; font-family: var(--font-heading); border: none; border-radius: var(--radius-sm); cursor: pointer; color: var(--white); font-size: 0.95rem; letter-spacing: 0.3px; margin-right: 10px;">
                   📊 Exportar a Excel
                 </button>
@@ -462,10 +462,16 @@
                 </div>
               </div>
 
-              <!-- Filtro de búsqueda -->
-              <div class="form__group" style="margin-bottom: 16px; max-width: 400px;">
-                <label class="form__label" for="hist_search">Filtrar Estudiante</label>
-                <input type="text" class="form__control" id="hist_search" placeholder="🔍 Escribe para filtrar..." oninput="filterHistory()">
+              <!-- Filtro de búsqueda y exportación -->
+              <div style="display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 16px;">
+                <div class="form__group" style="flex: 1 1 260px; max-width: 400px; margin: 0;">
+                  <label class="form__label" for="hist_search">Filtrar Estudiante</label>
+                  <input type="text" class="form__control" id="hist_search" placeholder="🔍 Escribe para filtrar..." oninput="filterHistory()">
+                </div>
+                <button type="button" class="form__button--purple" onclick="exportarHistorial()"
+                  style="padding: 10px 20px; font-weight: 600; font-family: var(--font-heading); border: none; border-radius: var(--radius-sm); cursor: pointer; color: var(--white); font-size: 0.9rem;">
+                  📊 Exportar a Excel
+                </button>
               </div>
 
               <!-- History Table Container -->
